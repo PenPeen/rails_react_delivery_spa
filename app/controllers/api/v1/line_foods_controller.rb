@@ -1,15 +1,22 @@
 module Api
   module V1
     class LineFoodsController < ApplicationController
-      before_action :set_line_food, only: %i[create]
+      before_action :set_line_food, only: %i[create replace]
       before_action :validate_ordered, only: %i[create]
 
       def index
-        line_foods = LineFood.all
+        line_foods = LineFood.active
 
-        render json: {
-          line_foods:
-        }, status: :ok
+        if line_foods.present?
+          render json: {
+            line_food_ids: line_foods.ids,
+            restaurant: line_foods.first.restaurant,
+            count: line_foods.sum { _1.count },
+            amount: line_foods.sum { _1.total_amount }
+          }, status: :ok
+        else
+          head :no_content
+        end
       end
 
       def create
@@ -21,6 +28,24 @@ module Api
           }, status: :created
         else
           head :unprocessable_entity
+        end
+      end
+
+      def replace
+        ActiveRecord::Base.transaction do
+          LineFood.active.other_restaurant(@ordered_food.restaurant.id).each do |line_food|
+            line_food.update!(:active, false)
+          end
+
+          set_line_food(@ordered_food)
+
+          if @line_food.save!
+            render json: {
+              line_food: @line_food
+            }, status: :created
+          end
+        rescue
+          head :internal_server_error
         end
       end
 
