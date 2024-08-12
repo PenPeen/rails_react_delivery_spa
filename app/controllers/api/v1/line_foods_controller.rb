@@ -5,11 +5,18 @@ module Api
       before_action :validate_ordered, only: %i[create]
 
       def index
-        line_foods = LineFood.all
+        line_foods = LineFood.active
 
-        render json: {
-          line_foods:
-        }, status: :ok
+        if line_foods.present?
+          render json: {
+            line_food_ids: line_foods.ids,
+            restaurant: line_foods.first.restaurant,
+            count: line_foods.sum { _1.count },
+            amount: line_foods.sum { _1.total_amount }
+          }, status: :ok
+        else
+          head :no_content
+        end
       end
 
       def create
