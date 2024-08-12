@@ -1,9 +1,21 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+ActiveRecord::Base.transaction do
+  3.times do |n|
+    restaurant = Restaurant.new(
+      name: "レストラン_#{n}",
+      fee: [ 100, 200, 300, 400, 500 ].sample,
+      time_required: [ 10, 20, 30, 40, 50 ].sample
+    )
+
+    12.times do |m|
+      restaurant.foods.build(
+        name: "フード_#{m}",
+        price: [ 300, 400, 500, 600, 700 ].sample,
+        description: "フード_#{m}: ~~~"
+      )
+    end
+
+    restaurant.save!
+  end
+end
+
+puts ('The initial data has been successfully.')
