@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-const Foods: React.FC = () => {
+export const Foods: React.FC = () => {
   const { restaurantsId } = useParams();
 
   return (
@@ -11,5 +11,3 @@ const Foods: React.FC = () => {
     </>
   );
 };
-
-export default Foods;

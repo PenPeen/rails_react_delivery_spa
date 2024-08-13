@@ -1,0 +1,18 @@
+.restaurants {
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px 32px;
+}
+
+.restaurants__main_logo {
+  height: 90px;
+}
+
+.restaurants__main_cover_image_wrapper {
+  text-align: center;
+}
+
+.restaurants__main_cover {
+  height: 100%;
+  width: 100%;
+}
