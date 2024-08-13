@@ -1,6 +1,4 @@
 .restaurants {
-  display: flex;
-  justify-content: flex-start;
   padding: 8px 32px;
 }
 
@@ -18,4 +16,33 @@
   height: 100%;
   width: 100%;
   pointer-events: none;
+}
+
+.restaurants__contents_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-around;
+  margin-bottom: 48px;
+}
+
+.restaurants__content_link {
+  color: black;
+  text-decoration: none;
+}
+
+.restaurants__contents_wrapper {
+  width: 450px;
+}
+
+.restaurants__contents_image {
+  width: 100%;
+}
+
+.restaurants__contents_main_text {
+  font-size: 18px;
+}
+
+.restaurants__contents_sub_text {
+  font-size: 12px;
 }
