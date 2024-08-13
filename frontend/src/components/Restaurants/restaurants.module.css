@@ -6,6 +6,8 @@
 
 .restaurants__main_logo {
   height: 90px;
+  pointer-events: none;
+  position: fixed;
 }
 
 .restaurants__main_cover_image_wrapper {
@@ -15,4 +17,5 @@
 .restaurants__main_cover {
   height: 100%;
   width: 100%;
+  pointer-events: none;
 }
