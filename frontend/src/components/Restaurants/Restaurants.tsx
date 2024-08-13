@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import MainCoverImage from "@/assets/main-cover-image.png";
 import RestaurantDefaultImage from "@/assets/restaurant-default-image.jpg";
@@ -9,18 +9,21 @@ import { useRequestStatus } from "@/hooks/use_request_status";
 import { Link } from "react-router-dom";
 import { REQUEST_STATE } from "@/config/constants/request_state_constants";
 import { Skeleton } from "@mui/material";
+import { Restaurant } from "@/type/restaurant";
 
 const MainLogo = "./logo.svg";
 
 export const Restaurants = () => {
   const { state, fetching, success } = useRequestStatus();
+  const [restaurants, setRestaurants] = useState<Restaurant[]>();
 
   useEffect(() => {
     fetching();
 
     const client = new ApiClient();
     client.get(restaurantsIndex).then((data) => {
-      success(data.restaurants);
+      setRestaurants(data.restaurants);
+      success();
     });
   }, []);
 
@@ -48,7 +51,8 @@ export const Restaurants = () => {
             <Skeleton variant='rectangular' width={450} height={300} />
           </>
         ) : (
-          state.restaurants.map((restaurant, index) => (
+          restaurants &&
+          restaurants.map((restaurant, index) => (
             <Link
               to={`/restaurants/${restaurant.id}/foods`}
               key={index}
