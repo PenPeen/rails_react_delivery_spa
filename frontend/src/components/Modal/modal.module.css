@@ -1,0 +1,58 @@
+.o_modal__contents {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  padding: 2em;
+  min-width: 20em;
+  max-width: 70%;
+  background-color: #fff;
+  border-radius: 1em;
+  transform: translate(-50%, -50%);
+  outline: transparent;
+}
+
+.o_modal__overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+  z-index: 999;
+}
+
+.o_modal__overlay__before_open {
+  opacity: 0;
+}
+
+.o_modal__overlay__open {
+  opacity: 1;
+}
+
+.o_modal__ok_button {
+  margin-top: 16px;
+  margin-right: 8px;
+}
+
+.o_modal__cancel_button {
+  margin-top: 16px;
+  margin-right: 8px;
+}
+
+.o_modal__close_button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  padding: 8px 8px;
+  cursor: pointer;
+}
+
+.o_modal__button_wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
