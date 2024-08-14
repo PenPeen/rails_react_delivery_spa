@@ -87,13 +87,11 @@ export const Foods: React.FC = () => {
         )}
       </div>
 
-      {showModal && (
-        <FoodModal
-          showModal={showModal}
-          handleOpenModal={handleOpenModal}
-          handleCloseModal={handleCloseModal}
-        />
-      )}
+      <FoodModal
+        showModal={showModal}
+        handleOpenModal={handleOpenModal}
+        handleCloseModal={handleCloseModal}
+      />
     </>
   );
 };
