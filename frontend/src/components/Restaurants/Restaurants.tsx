@@ -3,15 +3,14 @@ import { useEffect, useState } from "react";
 import MainCoverImage from "@/assets/main-cover-image.png";
 import RestaurantDefaultImage from "@/assets/restaurant-default-image.jpg";
 import ApiClient from "@/utils/api-client";
-import { restaurantsIndex } from "@/config/constants/request_path_constants";
+import { restaurantsIndex, REQUEST_STATE } from "@/config/constants";
 import styles from "./restaurants.module.css";
 import { useRequestStatus } from "@/hooks/use_request_status";
 import { Link } from "react-router-dom";
-import { REQUEST_STATE } from "@/config/constants/request_state_constants";
 import { Skeleton } from "@mui/material";
 import { Restaurant } from "@/type/restaurant";
 
-const MainLogo = "./logo.svg";
+const MainLogo = `${import.meta.env.BASE_URL}logo.svg`;
 
 export const Restaurants = () => {
   const { state, fetching, success } = useRequestStatus();

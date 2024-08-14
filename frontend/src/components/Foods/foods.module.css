@@ -1,0 +1,61 @@
+.foods__header_wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 32px;
+}
+
+.foods__main_logo {
+  height: 90px;
+}
+
+.foods_bag_icon_wrapper {
+  padding-top: 24px;
+}
+
+.foods__bag_icon {
+  color: #02a457;
+}
+
+.foods__list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.foods__wrapper {
+  display: flex;
+  width: 450px;
+  height: 180px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e2e2e2;
+  border-image: initial;
+  cursor: pointer;
+}
+
+.foods__item_wrapper {
+  margin: 16px;
+}
+
+.foods__detail {
+  padding: 24px 16px;
+  width: 250px;
+}
+
+.foods__description_wrapper {
+  height: 75px;
+}
+
+.foods__description_subtext {
+  color: #545454;
+  font-size: 14px;
+}
+
+.foods__price {
+  margin-top: 16px;
+}
+
+.foods__image {
+  width: 250px;
+}
