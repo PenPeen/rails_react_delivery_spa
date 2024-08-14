@@ -1,0 +1,19 @@
+.food_modal__header_image {
+  width: 100%;
+}
+
+.food_modal__description_wrapper {
+  padding: 0 8px 8px 8px;
+  max-height: 150px;
+  overflow: scroll;
+}
+
+.food_modal__description_subtext {
+  color: #545454;
+  font-size: 14px;
+  -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+  scrollbar-width: none;
+}
