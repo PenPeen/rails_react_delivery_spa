@@ -1,8 +1,10 @@
 import React, { PropsWithChildren } from "react";
-import { useModal } from "./useModal";
 import ModalPresentational from "./ModalPresentational";
 
 export interface ModalProps {
+  showModal: boolean;
+  handleOpenModal: () => void;
+  handleCloseModal: () => void;
   openLabel?: string;
   cancelLabel?: string;
   okLabel?: string;
@@ -14,16 +16,9 @@ export interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps & PropsWithChildren> = (props) => {
-  const [showModal, handleOpenModal, handleCloseModal] = useModal();
-
   return (
     <>
-      <ModalPresentational
-        {...props}
-        showModal={showModal}
-        handleOpenModal={handleOpenModal}
-        handleCloseModal={handleCloseModal}
-      />
+      <ModalPresentational {...props} />
     </>
   );
 };

@@ -1,19 +1,14 @@
 import React, { PropsWithChildren } from "react";
 import ReactModal from "react-modal";
 import closeLogo from "@/assets/close.svg";
-import { ModalProps } from "./ModalContainer";
 import { Button } from "@/components/Button/Button";
 import styles from "./modal.module.css";
+import { ModalProps } from "./ModalContainer";
 
-interface ModalPresentationalProps extends ModalProps {
-  showModal: boolean;
-  handleOpenModal: () => void;
-  handleCloseModal: () => void;
-}
-
-const ModalPresentational: React.FC<
-  ModalPresentationalProps & PropsWithChildren
-> = ({
+const ModalPresentational: React.FC<ModalProps & PropsWithChildren> = ({
+  showModal,
+  handleOpenModal,
+  handleCloseModal,
   openLabel = "Open Modal",
   cancelLabel = "CANCEL",
   okLabel = "OK",
@@ -23,9 +18,6 @@ const ModalPresentational: React.FC<
   isCancelButton = true,
   isOkButton = true,
   handleOK = () => {},
-  showModal,
-  handleOpenModal,
-  handleCloseModal,
 }) => {
   return (
     <div className={styles.o_modal}>
