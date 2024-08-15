@@ -10,8 +10,14 @@ import { Skeleton } from "@mui/material";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { FoodModal } from "../FoodModal/FoodModal";
 import { useModal } from "../Modal/useModal";
+import { NewOrderConfirmModal } from "../NewOrderConfirmModal/NewOrderConfirmModal";
 
 const MainLogo = `${import.meta.env.BASE_URL}logo.svg`;
+
+export type RestaurantsNames = {
+  exist: string;
+  new: string;
+};
 
 export const Foods: React.FC = () => {
   const { restaurantsId } = useParams();
@@ -19,6 +25,12 @@ export const Foods: React.FC = () => {
   const { state, fetching, success } = useRequestStatus();
   const [showModal, handleOpenModal, handleCloseModal] = useModal();
   const [selectedFood, setSelectedFood] = useState<Food>();
+  const [
+    showNewOrderModal,
+    handleOpenNewOrderModal,
+    handleClosenNewOrderModal,
+  ] = useModal();
+  const [restaurantsNames, setRestaurantsNames] = useState<RestaurantsNames>();
 
   useEffect(() => {
     if (!restaurantsId) return;
@@ -41,6 +53,8 @@ export const Foods: React.FC = () => {
       body.style.overflow = "";
     }
   }, [showModal]);
+
+  const confirmedOrder = () => {};
 
   return (
     <>
@@ -102,7 +116,20 @@ export const Foods: React.FC = () => {
           showModal={showModal}
           handleOpenModal={handleOpenModal}
           handleCloseModal={handleCloseModal}
-          selectedFood={selectedFood}
+          selectedFood={selectedFood!}
+          handleOpenNewOrderModal={handleOpenNewOrderModal}
+          setRestaurantsNames={setRestaurantsNames}
+        />
+      )}
+
+      {showNewOrderModal && (
+        <NewOrderConfirmModal
+          showModal={showNewOrderModal}
+          handleOpenModal={handleOpenNewOrderModal}
+          handleCloseModal={handleClosenNewOrderModal}
+          onClickSubmit={confirmedOrder}
+          existingResutaurautName={restaurantsNames!.exist}
+          newResutaurautName={restaurantsNames!.new}
         />
       )}
     </>

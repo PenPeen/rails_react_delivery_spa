@@ -3,14 +3,21 @@ import styles from "./food_modal.module.css";
 import OrderHeaderImage from "@/assets/order-header.png";
 import { CountDownButton } from "@/components/CountDownButton/CountDownButton";
 import { CountUpButton } from "@/components/CountUpButton/CountUpButton";
-import { Food } from "@/type/food";
+import ApiClient from "@/utils/api-client";
+import { HTTP_STATUS_CODE, lineFoods } from "@/config/constants";
 import { useState } from "react";
+import { Food } from "@/type/food";
+import { RestaurantsNames } from "../Foods/Foods";
 
 type FoodModalProps = {
-  selectedFood: Food | undefined;
+  selectedFood: Food;
   showModal: boolean;
   handleOpenModal: () => void;
   handleCloseModal: () => void;
+  handleOpenNewOrderModal: () => void;
+  setRestaurantsNames: React.Dispatch<
+    React.SetStateAction<RestaurantsNames | undefined>
+  >;
 };
 
 export const FoodModal: React.FC<FoodModalProps> = ({
@@ -18,6 +25,8 @@ export const FoodModal: React.FC<FoodModalProps> = ({
   showModal,
   handleOpenModal,
   handleCloseModal,
+  handleOpenNewOrderModal,
+  setRestaurantsNames,
 }) => {
   const [sales, setSales] = useState(1);
 
@@ -32,7 +41,26 @@ export const FoodModal: React.FC<FoodModalProps> = ({
   const countDownIsDisabled = () => sales <= 1;
 
   const submitOrder = () => {
-    // TODO: オーダーアクション
+    const apiClient = new ApiClient();
+    apiClient
+      .post(lineFoods, {
+        food_id: selectedFood.id,
+        count: sales,
+      })
+      .catch((e) => {
+        if (e.response.status === HTTP_STATUS_CODE.NOT_ACCEPTABLE) {
+          setRestaurantsNames({
+            exist: e.response.data.existing_restaurant,
+            new: e.response.data.new_restaurant,
+          });
+          handleOpenNewOrderModal();
+        } else {
+          throw e;
+        }
+      })
+      .finally(() => {
+        handleCloseModal();
+      });
   };
 
   return (
