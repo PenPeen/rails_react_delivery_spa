@@ -1,7 +1,7 @@
 module Api
   module V1
     class LineFoodsController < ApplicationController
-      before_action :set_line_food, only: %i[create replace]
+      before_action :set_food, only: %i[create]
       before_action :validate_ordered, only: %i[create]
 
       def index
