@@ -17,3 +17,25 @@
 ::-webkit-scrollbar {
   scrollbar-width: none;
 }
+
+.food_modal__sales_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.food_modal__sales_count_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.food_modal__order_button {
+  width: 390px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  border-style: none;
+  padding: 8px 16px;
+  font-size: 14px;
+}
