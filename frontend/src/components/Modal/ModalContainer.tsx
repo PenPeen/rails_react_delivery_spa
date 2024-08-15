@@ -17,8 +17,6 @@ export interface ModalProps {
   handleOK?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const body = document.querySelector("body");
-
 const Modal: React.FC<ModalProps & PropsWithChildren> = ({
   showModal,
   handleOpenModal,
@@ -34,16 +32,6 @@ const Modal: React.FC<ModalProps & PropsWithChildren> = ({
   isScrollable = false,
   handleOK = () => {},
 }) => {
-  useEffect(() => {
-    if (body == undefined || isScrollable) return;
-
-    if (showModal) {
-      body.className = styles.o_modal__body_lock;
-    } else {
-      body.className = "";
-    }
-  }, [isScrollable, showModal]);
-
   return (
     <>
       <ModalPresentational

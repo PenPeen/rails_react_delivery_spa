@@ -32,6 +32,17 @@ export const Foods: React.FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const body = document.querySelector("body");
+    if (body == undefined) return;
+
+    if (showModal) {
+      body.style.overflow = "hidden";
+    } else {
+      body.style.overflow = "";
+    }
+  }, [showModal]);
+
   return (
     <>
       <div className={styles.foods__header_wrapper}>
@@ -87,11 +98,13 @@ export const Foods: React.FC = () => {
         )}
       </div>
 
-      <FoodModal
-        showModal={showModal}
-        handleOpenModal={handleOpenModal}
-        handleCloseModal={handleCloseModal}
-      />
+      {showModal && (
+        <FoodModal
+          showModal={showModal}
+          handleOpenModal={handleOpenModal}
+          handleCloseModal={handleCloseModal}
+        />
+      )}
     </>
   );
 };
