@@ -1,0 +1,10 @@
+.new_order_confirm_modal__new_order_button {
+  width: 100%;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  border-style: none;
+  padding: 12px 16px;
+  font-size: 14px;
+  margin-top: 24px;
+}
