@@ -3,13 +3,12 @@ import { foodsIndex, REQUEST_STATE } from "@/config/constants";
 import { useRequestStatus } from "@/hooks/use_request_status";
 import { Food } from "@/type/food";
 import ApiClient from "@/utils/api-client";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styles from "./foods.module.css";
 import { Skeleton } from "@mui/material";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { FoodModal } from "../FoodModal/FoodModal";
-import { ParentContext } from "@/App";
 import { useModal } from "../Modal/useModal";
 
 const MainLogo = `${import.meta.env.BASE_URL}logo.svg`;
@@ -19,7 +18,7 @@ export const Foods: React.FC = () => {
   const [foods, setFoods] = useState<Food[]>();
   const { state, fetching, success } = useRequestStatus();
   const [showModal, handleOpenModal, handleCloseModal] = useModal();
-  const [, setSelectedFood] = useContext(ParentContext);
+  const [selectedFood, setSelectedFood] = useState<Food>();
 
   useEffect(() => {
     if (!restaurantsId) return;
@@ -103,6 +102,7 @@ export const Foods: React.FC = () => {
           showModal={showModal}
           handleOpenModal={handleOpenModal}
           handleCloseModal={handleCloseModal}
+          selectedFood={selectedFood}
         />
       )}
     </>
