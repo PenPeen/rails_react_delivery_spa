@@ -1,23 +1,24 @@
 import Modal from "../Modal/ModalContainer";
-import styles from "./foods.module.css";
+import styles from "./food_modal.module.css";
 import OrderHeaderImage from "@/assets/order-header.png";
-import { useContext, useState } from "react";
-import { ParentContext } from "@/App";
 import { CountDownButton } from "@/components/CountDownButton/CountDownButton";
 import { CountUpButton } from "@/components/CountUpButton/CountUpButton";
+import { Food } from "@/type/food";
+import { useState } from "react";
 
 type FoodModalProps = {
+  selectedFood: Food | undefined;
   showModal: boolean;
   handleOpenModal: () => void;
   handleCloseModal: () => void;
 };
 
 export const FoodModal: React.FC<FoodModalProps> = ({
+  selectedFood,
   showModal,
   handleOpenModal,
   handleCloseModal,
 }) => {
-  const [selectedFood] = useContext(ParentContext);
   const [sales, setSales] = useState(1);
 
   const countUp = () => {
