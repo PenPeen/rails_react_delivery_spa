@@ -64,6 +64,10 @@
       }
     }
   }
+
+  & .o_header__navigation_icon {
+    width: 36px;
+  }
 }
 
 .o_header__fixed {
