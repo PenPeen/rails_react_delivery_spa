@@ -8,14 +8,6 @@
   height: 90px;
 }
 
-.foods_bag_icon_wrapper {
-  padding-top: 24px;
-}
-
-.foods__bag_icon {
-  color: #02a457;
-}
-
 .foods__list {
   display: flex;
   justify-content: space-around;
