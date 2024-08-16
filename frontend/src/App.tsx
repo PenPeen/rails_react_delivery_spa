@@ -12,13 +12,20 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Header title='PenEats' logoUrl='/logo.jpg' isFixed />
-        <Routes>
-          <Route path='/' element={<Restaurants />} />
-          <Route path='/restaurants' element={<Restaurants />} />
-          <Route path='/restaurants/:restaurantsId/foods' element={<Foods />} />
-          <Route path='/orders' element={<Orders />} />
-        </Routes>
+        <div className='head__contents'>
+          <Header title='PenEats' logoUrl='/logo.jpg' isFixed />
+        </div>
+        <div className='main__contents'>
+          <Routes>
+            <Route path='/' element={<Restaurants />} />
+            <Route path='/restaurants' element={<Restaurants />} />
+            <Route
+              path='/restaurants/:restaurantsId/foods'
+              element={<Foods />}
+            />
+            <Route path='/orders' element={<Orders />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </>
   );

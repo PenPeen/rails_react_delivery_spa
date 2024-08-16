@@ -1,6 +1,6 @@
 import styles from "./header.module.css";
 import { Link } from "react-router-dom";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
+import CartIcon from "@/assets/shopping-cart.svg";
 
 type User = {
   name: string;
@@ -70,9 +70,10 @@ export const Header = ({
         <div className={styles.o_header__right_contents}>
           <div className={styles.o_header__navigation_icon_wrapper}>
             <Link to='/orders'>
-              <LocalMallIcon
+              <img
+                src={CartIcon}
+                alt='Cart'
                 className={styles.o_header__navigation_icon}
-                fontSize='large'
               />
             </Link>
           </div>
