@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "rails", "~> 7.2.0"
-gem "sqlite3", ">= 1.4"
+gem "mysql2"
 gem "puma", ">= 5.0"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
