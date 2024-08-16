@@ -2,9 +2,9 @@
 #
 # Table name: restaurants
 #
-#  id            :integer          not null, primary key
+#  id            :bigint           not null, primary key
 #  fee           :integer          default(0), not null
-#  name          :string           not null
+#  name          :string(255)      not null
 #  time_required :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
