@@ -96,13 +96,13 @@ export const Foods: React.FC = () => {
                 }}
               >
                 <div className={styles.foods__detail}>
-                  {food.name}
+                  <p className={styles.foods__name}>{food.name}</p>
+                  <div className={styles.foods__price}>¥{food.price}</div>
                   <div className={styles.foods__description_wrapper}>
                     <p className={styles.foods__description_subtext}>
                       {food.description}
                     </p>
                   </div>
-                  <div className={styles.foods__price}>¥{food.price}</div>
                 </div>
                 <img className={styles.foods__image} src={FoodImage} />
               </div>
