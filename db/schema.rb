@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_12_002952) do
-  create_table "foods", force: :cascade do |t|
-    t.integer "restaurant_id", null: false
+ActiveRecord::Schema[7.2].define(version: 2024_08_12_003047) do
+  create_table "foods", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
     t.string "name", null: false
     t.integer "price", null: false
     t.text "description", null: false
@@ -21,10 +21,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_12_002952) do
     t.index ["restaurant_id"], name: "index_foods_on_restaurant_id"
   end
 
-  create_table "line_foods", force: :cascade do |t|
-    t.integer "food_id", null: false
-    t.integer "restaurant_id", null: false
-    t.integer "order_id"
+  create_table "line_foods", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "food_id", null: false
+    t.bigint "restaurant_id", null: false
+    t.bigint "order_id"
     t.integer "count", default: 0, null: false
     t.boolean "active", default: false, null: false
     t.datetime "created_at", null: false
@@ -34,13 +34,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_12_002952) do
     t.index ["restaurant_id"], name: "index_line_foods_on_restaurant_id"
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "total_price", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "restaurants", force: :cascade do |t|
+  create_table "restaurants", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.integer "fee", default: 0, null: false
     t.integer "time_required", null: false

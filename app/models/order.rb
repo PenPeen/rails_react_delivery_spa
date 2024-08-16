@@ -2,7 +2,7 @@
 #
 # Table name: orders
 #
-#  id          :integer          not null, primary key
+#  id          :bigint           not null, primary key
 #  total_price :integer          default(0), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

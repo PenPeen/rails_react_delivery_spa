@@ -2,14 +2,14 @@
 #
 # Table name: line_foods
 #
-#  id            :integer          not null, primary key
+#  id            :bigint           not null, primary key
 #  active        :boolean          default(FALSE), not null
 #  count         :integer          default(0), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  food_id       :integer          not null
-#  order_id      :integer
-#  restaurant_id :integer          not null
+#  food_id       :bigint           not null
+#  order_id      :bigint
+#  restaurant_id :bigint           not null
 #
 # Indexes
 #
@@ -19,9 +19,9 @@
 #
 # Foreign Keys
 #
-#  food_id        (food_id => foods.id)
-#  order_id       (order_id => orders.id)
-#  restaurant_id  (restaurant_id => restaurants.id)
+#  fk_rails_...  (food_id => foods.id)
+#  fk_rails_...  (order_id => orders.id)
+#  fk_rails_...  (restaurant_id => restaurants.id)
 #
 class LineFood < ApplicationRecord
   belongs_to :food
