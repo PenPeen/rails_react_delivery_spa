@@ -1,5 +1,9 @@
 import FoodImage from "@/assets/food-image.jpg";
-import { foodsIndex, REQUEST_STATE } from "@/config/constants";
+import {
+  foodsIndex,
+  lineFoodsReplace,
+  REQUEST_STATE,
+} from "@/config/constants";
 import { useRequestStatus } from "@/hooks/use_request_status";
 import { Food } from "@/type/food";
 import ApiClient from "@/utils/api-client";
@@ -28,6 +32,7 @@ export const Foods: React.FC = () => {
     handleClosenNewOrderModal,
   ] = useModal();
   const [restaurantsNames, setRestaurantsNames] = useState<RestaurantsNames>();
+  const [sales, setSales] = useState(1);
 
   useEffect(() => {
     if (!restaurantsId) return;
@@ -51,7 +56,20 @@ export const Foods: React.FC = () => {
     }
   }, [showModal]);
 
-  const confirmedOrder = () => {};
+  const confirmedOrder = () => {
+    const apiClient = new ApiClient();
+    apiClient
+      .put(lineFoodsReplace, {
+        food_id: selectedFood!.id,
+        count: sales,
+      })
+      .catch((e) => {
+        throw e;
+      })
+      .finally(() => {
+        handleClosenNewOrderModal();
+      });
+  };
 
   return (
     <>
@@ -100,6 +118,8 @@ export const Foods: React.FC = () => {
           selectedFood={selectedFood!}
           handleOpenNewOrderModal={handleOpenNewOrderModal}
           setRestaurantsNames={setRestaurantsNames}
+          sales={sales}
+          setSales={setSales}
         />
       )}
 
