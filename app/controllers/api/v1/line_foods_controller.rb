@@ -1,7 +1,7 @@
 module Api
   module V1
     class LineFoodsController < ApplicationController
-      before_action :set_food, only: %i[create]
+      before_action :set_food, only: %i[create replace]
       before_action :validate_ordered, only: %i[create]
 
       def index
@@ -34,7 +34,7 @@ module Api
       def replace
         ActiveRecord::Base.transaction do
           LineFood.active.other_restaurant(@ordered_food.restaurant.id).each do |line_food|
-            line_food.update!(:active, false)
+            line_food.update!(active: false)
           end
 
           set_line_food(@ordered_food)
