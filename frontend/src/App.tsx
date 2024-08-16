@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Header title='PenEats' logoUrl='/logo.jpg' />
+        <Header title='PenEats' logoUrl='/logo.jpg' isFixed />
         <Routes>
           <Route path='/' element={<Restaurants />} />
           <Route path='/restaurants' element={<Restaurants />} />

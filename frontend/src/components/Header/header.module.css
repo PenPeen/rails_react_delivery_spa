@@ -1,10 +1,13 @@
 .o_header {
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 15px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
 
   & .o_header__top_link {
     display: flex;
@@ -61,6 +64,12 @@
       }
     }
   }
+}
+
+.o_header__fixed {
+  position: fixed;
+  top: 0;
+  z-index: 100;
 }
 
 .o_header__dark {

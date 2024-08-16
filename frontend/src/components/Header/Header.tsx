@@ -19,6 +19,7 @@ export interface HeaderProps {
   user?: User;
   navigations?: Navigations;
   isDark?: boolean;
+  isFixed?: boolean;
   onLogin?: () => void;
   onLogout?: () => void;
 }
@@ -28,53 +29,52 @@ export const Header = ({
   logoUrl,
   navigations,
   isDark = false,
+  isFixed = false,
 }: HeaderProps) => {
-  const mode = isDark
-    ? [styles.o_header, styles.o_header__dark].join(" ")
-    : styles.o_header;
+  const mode = [styles.o_header];
+  if (isFixed) {
+    mode.push(styles.o_header__fixed);
+  }
+  if (isDark) {
+    mode.push(styles.o_header__dark);
+  }
 
   return (
-    <header>
-      <div className={mode}>
-        <div>
-          <div className={styles.o_header__left_contents}>
-            <Link to='/' className={styles.o_header__top_link}>
-              {logoUrl && (
-                <img
-                  className={styles.o_header__logo}
-                  src={logoUrl}
-                  alt='logo'
-                />
-              )}
-              {title && <h1 className={styles.o_header__title}>{title}</h1>}
-            </Link>
-            {navigations ? (
-              <nav className={styles.o_header__navigation}>
-                <ul className={styles.o_header__navigation_ul}>
-                  {navigations.map((navigation) => {
-                    return (
-                      <li>
-                        <a href={navigation.url}>{navigation.text}</a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </nav>
-            ) : (
-              <></>
+    <header className={mode.join(" ")}>
+      <div>
+        <div className={styles.o_header__left_contents}>
+          <Link to='/' className={styles.o_header__top_link}>
+            {logoUrl && (
+              <img className={styles.o_header__logo} src={logoUrl} alt='logo' />
             )}
-          </div>
+            {title && <h1 className={styles.o_header__title}>{title}</h1>}
+          </Link>
+          {navigations ? (
+            <nav className={styles.o_header__navigation}>
+              <ul className={styles.o_header__navigation_ul}>
+                {navigations.map((navigation) => {
+                  return (
+                    <li>
+                      <a href={navigation.url}>{navigation.text}</a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+          ) : (
+            <></>
+          )}
         </div>
-        <div>
-          <div className={styles.o_header__right_contents}>
-            <div className={styles.o_header__navigation_icon_wrapper}>
-              <Link to='/orders'>
-                <LocalMallIcon
-                  className={styles.o_header__navigation_icon}
-                  fontSize='large'
-                />
-              </Link>
-            </div>
+      </div>
+      <div>
+        <div className={styles.o_header__right_contents}>
+          <div className={styles.o_header__navigation_icon_wrapper}>
+            <Link to='/orders'>
+              <LocalMallIcon
+                className={styles.o_header__navigation_icon}
+                fontSize='large'
+              />
+            </Link>
           </div>
         </div>
       </div>
