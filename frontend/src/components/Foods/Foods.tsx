@@ -4,15 +4,12 @@ import { useRequestStatus } from "@/hooks/use_request_status";
 import { Food } from "@/type/food";
 import ApiClient from "@/utils/api-client";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from "./foods.module.css";
 import { Skeleton } from "@mui/material";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { FoodModal } from "../FoodModal/FoodModal";
 import { useModal } from "../Modal/useModal";
 import { NewOrderConfirmModal } from "../NewOrderConfirmModal/NewOrderConfirmModal";
-
-const MainLogo = `${import.meta.env.BASE_URL}logo.svg`;
 
 export type RestaurantsNames = {
   exist: string;
@@ -58,23 +55,7 @@ export const Foods: React.FC = () => {
 
   return (
     <>
-      <div className={styles.foods__header_wrapper}>
-        <Link to='/restaurants'>
-          <img
-            className={styles.foods__main_logo}
-            src={MainLogo}
-            alt='main logo'
-          />
-        </Link>
-        <div className={styles.foods_bag_icon_wrapper}>
-          <Link to='/orders'>
-            <LocalMallIcon
-              className={styles.foods__bag_icon}
-              fontSize='large'
-            />
-          </Link>
-        </div>
-      </div>
+      <div className={styles.foods__header_wrapper}></div>
       <div className={styles.foods__list}>
         {state.status === REQUEST_STATE.LOADING ? (
           <>
