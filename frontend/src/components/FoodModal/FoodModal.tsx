@@ -5,7 +5,6 @@ import { CountDownButton } from "@/components/CountDownButton/CountDownButton";
 import { CountUpButton } from "@/components/CountUpButton/CountUpButton";
 import ApiClient from "@/utils/api-client";
 import { HTTP_STATUS_CODE, lineFoods } from "@/config/constants";
-import { useState } from "react";
 import { Food } from "@/type/food";
 import { RestaurantsNames } from "../Foods/Foods";
 
@@ -18,6 +17,8 @@ type FoodModalProps = {
   setRestaurantsNames: React.Dispatch<
     React.SetStateAction<RestaurantsNames | undefined>
   >;
+  sales: number;
+  setSales: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const FoodModal: React.FC<FoodModalProps> = ({
@@ -27,9 +28,9 @@ export const FoodModal: React.FC<FoodModalProps> = ({
   handleCloseModal,
   handleOpenNewOrderModal,
   setRestaurantsNames,
+  sales,
+  setSales,
 }) => {
-  const [sales, setSales] = useState(1);
-
   const countUp = () => {
     setSales((count) => ++count);
   };

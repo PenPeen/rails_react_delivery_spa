@@ -10,8 +10,6 @@ import { Link } from "react-router-dom";
 import { Skeleton } from "@mui/material";
 import { Restaurant } from "@/type/restaurant";
 
-const MainLogo = `${import.meta.env.BASE_URL}logo.svg`;
-
 export const Restaurants = () => {
   const { state, fetching, success } = useRequestStatus();
   const [restaurants, setRestaurants] = useState<Restaurant[]>();
