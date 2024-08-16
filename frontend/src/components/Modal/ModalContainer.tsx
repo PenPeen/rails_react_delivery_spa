@@ -1,6 +1,5 @@
-import React, { PropsWithChildren, useEffect } from "react";
+import React, { PropsWithChildren } from "react";
 import ModalPresentational from "./ModalPresentational";
-import styles from "./modal.module.css";
 
 export interface ModalProps {
   showModal: boolean;
