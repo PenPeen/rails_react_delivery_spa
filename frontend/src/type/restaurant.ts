@@ -3,6 +3,6 @@ export interface Restaurant {
   name: string;
   fee: number;
   time_required: number;
-  image_url?: string;
+  url?: string;
   updated_at?: string;
 }

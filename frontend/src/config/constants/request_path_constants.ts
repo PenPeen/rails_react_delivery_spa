@@ -1,4 +1,5 @@
-const DEFAULT_API_LOCALHOST = "http://localhost:3000/api/v1";
+export const DEFAULT_RAILS_LOCALHOST = "http://localhost:3000";
+const DEFAULT_API_LOCALHOST = `${DEFAULT_RAILS_LOCALHOST}/api/v1`;
 export const restaurantsIndex = `${DEFAULT_API_LOCALHOST}/restaurants`;
 
 export const foodsIndex = (restaurantId: string) =>

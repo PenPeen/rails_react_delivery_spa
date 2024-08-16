@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_12_003047) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_16_085043) do
   create_table "foods", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "restaurant_id", null: false
     t.string "name", null: false
     t.integer "price", null: false
+    t.string "url"
     t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,6 +45,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_12_003047) do
     t.string "name", null: false
     t.integer "fee", default: 0, null: false
     t.integer "time_required", null: false
+    t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

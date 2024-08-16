@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import MainCoverImage from "@/assets/main-cover-image.png";
 import RestaurantDefaultImage from "@/assets/restaurant-default-image.jpg";
 import ApiClient from "@/utils/api-client";
-import { restaurantsIndex, REQUEST_STATE } from "@/config/constants";
+import {
+  restaurantsIndex,
+  REQUEST_STATE,
+  DEFAULT_RAILS_LOCALHOST,
+} from "@/config/constants";
 import styles from "./restaurants.module.css";
 import { useRequestStatus } from "@/hooks/use_request_status";
 import { Link } from "react-router-dom";
@@ -51,7 +55,11 @@ export const Restaurants = () => {
               <div className={styles.restaurants__contents_wrapper}>
                 <img
                   className={styles.restaurants__contents_image}
-                  src={restaurant.image_url || RestaurantDefaultImage}
+                  src={
+                    restaurant.url
+                      ? `${DEFAULT_RAILS_LOCALHOST}/${restaurant.url}`
+                      : RestaurantDefaultImage
+                  }
                 />
                 <p className={styles.restaurants__contents_main_text}>
                   {restaurant.name}
