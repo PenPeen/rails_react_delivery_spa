@@ -28,13 +28,6 @@ export const Restaurants = () => {
 
   return (
     <div className={styles.restaurants}>
-      <div>
-        <img
-          className={styles.restaurants__main_logo}
-          src={MainLogo}
-          alt='main logo'
-        />
-      </div>
       <div className={styles.restaurants__main_cover_image_wrapper}>
         <img
           className={styles.restaurants__main_cover}
