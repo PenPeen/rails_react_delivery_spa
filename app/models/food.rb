@@ -6,6 +6,7 @@
 #  description   :text(65535)      not null
 #  name          :string(255)      not null
 #  price         :integer          not null
+#  url           :string(255)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  restaurant_id :bigint           not null
