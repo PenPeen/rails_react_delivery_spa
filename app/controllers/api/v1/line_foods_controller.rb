@@ -49,6 +49,14 @@ module Api
         end
       end
 
+      def cart_count
+        count  = LineFood.active.sum(:count)
+
+        render json: {
+          count:
+        }, status: :ok
+      end
+
       private
         def set_food
           @ordered_food = Food.find(params[:food_id])
