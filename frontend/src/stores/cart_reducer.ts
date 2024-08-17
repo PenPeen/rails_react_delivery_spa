@@ -12,11 +12,8 @@ const CartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<number>) => {
-      state.count += action.payload;
-    },
-    remove: (state, action: PayloadAction<number>) => {
-      state.count -= action.payload;
+    setCount: (state, action: PayloadAction<number>) => {
+      state.count = action.payload;
     },
   },
 });
