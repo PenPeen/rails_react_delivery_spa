@@ -5,14 +5,14 @@ module Api
       before_action :validate_ordered, only: %i[create]
 
       def index
-        line_foods = LineFood.all
+        line_foods = LineFood.preload(:food, :restaurant).all.order(created_at: :desc)
 
         if line_foods.present?
+          restaurant = line_foods.first.restaurant
+
           render json: {
-            line_food_ids: line_foods.ids,
-            restaurant: line_foods.first.restaurant,
-            count: line_foods.sum { _1.count },
-            amount: line_foods.sum { _1.total_amount }
+            line_foods: line_foods.map { _1.slice(:id, :name, :count, :price) },
+            restaurant:
           }, status: :ok
         else
           head :no_content
