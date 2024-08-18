@@ -6,4 +6,5 @@ export const foodsIndex = (restaurantId: string) =>
   `${DEFAULT_API_LOCALHOST}/restaurants/${restaurantId}/foods`;
 export const lineFoods = `${DEFAULT_API_LOCALHOST}/line_foods`;
 export const lineFoodsReplace = `${DEFAULT_API_LOCALHOST}/line_foods/replace`;
+export const lineFoodsCount = `${DEFAULT_API_LOCALHOST}/line_foods/cart_count`;
 export const orders = `${DEFAULT_API_LOCALHOST}/orders`;
