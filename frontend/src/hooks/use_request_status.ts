@@ -7,10 +7,10 @@ const { actions, reducer } = requestStatusSlice;
 const { fetching, success } = actions;
 
 export const useRequestStatus = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [requestState, dispatch] = useReducer(reducer, initialState);
 
   return {
-    state,
+    requestState,
     fetching: () => dispatch(fetching()),
     success: () => dispatch(success()),
   };

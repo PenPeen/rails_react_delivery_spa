@@ -1,6 +1,12 @@
 import styles from "./header.module.css";
 import { Link } from "react-router-dom";
 import CartIcon from "@/assets/shopping-cart.svg";
+import { useContext, useEffect } from "react";
+import ApiClient from "@/utils/api-client";
+import { lineFoodsCount, REQUEST_STATE } from "@/config/constants";
+import { useRequestStatus } from "@/hooks/use_request_status";
+import { CartContext } from "@/App";
+import { Badge } from "../Badge/Badge";
 
 type User = {
   name: string;
@@ -31,6 +37,18 @@ export const Header = ({
   isDark = false,
   isFixed = false,
 }: HeaderProps) => {
+  const [count, setCount] = useContext(CartContext);
+  const { requestState, fetching, success } = useRequestStatus();
+
+  useEffect(() => {
+    fetching();
+    const client = new ApiClient();
+    client.get(lineFoodsCount).then((data) => {
+      success();
+      setCount(data.count);
+    });
+  }, []);
+
   const mode = [styles.o_header];
   if (isFixed) {
     mode.push(styles.o_header__fixed);
@@ -75,6 +93,9 @@ export const Header = ({
                 alt='Cart'
                 className={styles.o_header__navigation_icon}
               />
+              {requestState.status === REQUEST_STATE.OK && (
+                <Badge type='success' label={count.toString()} />
+              )}
             </Link>
           </div>
         </div>
