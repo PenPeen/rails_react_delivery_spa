@@ -1,9 +1,5 @@
 import FoodImage from "@/assets/food-image.jpg";
-import {
-  foodsIndex,
-  lineFoodsReplace,
-  REQUEST_STATE,
-} from "@/config/constants";
+import { foodsIndex, REQUEST_STATE } from "@/config/constants";
 import { useRequestStatus } from "@/hooks/use_request_status";
 import { Food } from "@/type/food";
 import ApiClient from "@/utils/api-client";
@@ -55,21 +51,6 @@ export const Foods: React.FC = () => {
       body.style.overflow = "";
     }
   }, [showModal]);
-
-  const confirmedOrder = () => {
-    const apiClient = new ApiClient();
-    apiClient
-      .put(lineFoodsReplace, {
-        food_id: selectedFood!.id,
-        count: sales,
-      })
-      .catch((e) => {
-        throw e;
-      })
-      .finally(() => {
-        handleClosenNewOrderModal();
-      });
-  };
 
   return (
     <>
@@ -128,7 +109,8 @@ export const Foods: React.FC = () => {
           showModal={showNewOrderModal}
           handleOpenModal={handleOpenNewOrderModal}
           handleCloseModal={handleClosenNewOrderModal}
-          onClickSubmit={confirmedOrder}
+          selectedFood={selectedFood!}
+          sales={sales}
           existingResutaurautName={restaurantsNames!.exist}
           newResutaurautName={restaurantsNames!.new}
         />
