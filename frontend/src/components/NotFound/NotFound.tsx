@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./not_found.module.css";
+import { Link } from "react-router-dom";
 
 type NotFoundProps = {
   title?: string;
@@ -19,9 +20,9 @@ const NotFound: React.FC<NotFoundProps> = ({
       <h1>{title}</h1>
       <p>{message}</p>
       {
-        <a href={link} className={styles.link}>
+        <Link to={link} className={styles.link}>
           {linkText}
-        </a>
+        </Link>
       }
     </div>
   );
