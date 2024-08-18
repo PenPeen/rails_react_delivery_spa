@@ -3,6 +3,8 @@ import Modal from "@/components/Modal/ModalContainer";
 import styles from "./new_order_confirm.module.css";
 import { lineFoodsReplace } from "@/config/constants";
 import { Food } from "@/type/food";
+import { useContext } from "react";
+import { CartContext } from "@/App";
 
 type NewOrderConfirmModalProps = {
   selectedFood: Food;
@@ -23,12 +25,17 @@ export const NewOrderConfirmModal: React.FC<NewOrderConfirmModalProps> = ({
   existingResutaurautName,
   newResutaurautName,
 }) => {
+  const [, setCount] = useContext(CartContext);
+
   const confirmedOrder = () => {
     const apiClient = new ApiClient();
     apiClient
       .put(lineFoodsReplace, {
         food_id: selectedFood!.id,
         count: sales,
+      })
+      .then((data) => {
+        setCount(data.count);
       })
       .catch((e) => {
         throw e;
