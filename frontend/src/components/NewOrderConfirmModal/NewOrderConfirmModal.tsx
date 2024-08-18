@@ -1,23 +1,50 @@
-import Modal from "../Modal/ModalContainer";
+import ApiClient from "@/utils/api-client";
+import Modal from "@/components/Modal/ModalContainer";
 import styles from "./new_order_confirm.module.css";
+import { lineFoodsReplace } from "@/config/constants";
+import { Food } from "@/type/food";
+import { useContext } from "react";
+import { CartContext } from "@/App";
 
 type NewOrderConfirmModalProps = {
+  selectedFood: Food;
+  sales: number;
   showModal: boolean;
   handleOpenModal: () => void;
   handleCloseModal: () => void;
-  onClickSubmit: () => void;
   existingResutaurautName: string;
   newResutaurautName: string;
 };
 
 export const NewOrderConfirmModal: React.FC<NewOrderConfirmModalProps> = ({
+  selectedFood,
+  sales,
   showModal,
   handleOpenModal,
   handleCloseModal,
-  onClickSubmit,
   existingResutaurautName,
   newResutaurautName,
 }) => {
+  const [, setCount] = useContext(CartContext);
+
+  const confirmedOrder = () => {
+    const apiClient = new ApiClient();
+    apiClient
+      .put(lineFoodsReplace, {
+        food_id: selectedFood!.id,
+        count: sales,
+      })
+      .then((data) => {
+        setCount(data.count);
+      })
+      .catch((e) => {
+        throw e;
+      })
+      .finally(() => {
+        handleCloseModal();
+      });
+  };
+
   return (
     <>
       <div className={styles.new_order_confirm_modal}>
@@ -36,7 +63,7 @@ export const NewOrderConfirmModal: React.FC<NewOrderConfirmModalProps> = ({
           </p>
           <button
             className={styles.new_order_confirm_modal__new_order_button}
-            onClick={onClickSubmit}
+            onClick={confirmedOrder}
           >
             新規注文
           </button>

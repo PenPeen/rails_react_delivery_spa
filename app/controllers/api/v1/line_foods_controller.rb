@@ -24,7 +24,8 @@ module Api
 
         if @line_food.save
           render json: {
-            line_food: @line_food
+            line_food: @line_food,
+            count: active_food_sum
           }, status: :created
         else
           head :unprocessable_entity
@@ -41,7 +42,8 @@ module Api
 
           if @line_food.save!
             render json: {
-              line_food: @line_food
+              line_food: @line_food,
+              count: active_food_sum
             }, status: :created
           end
         rescue
@@ -50,16 +52,18 @@ module Api
       end
 
       def cart_count
-        count  = LineFood.active.sum(:count)
-
         render json: {
-          count:
+          count: active_food_sum
         }, status: :ok
       end
 
       private
         def set_food
           @ordered_food = Food.find(params[:food_id])
+        end
+
+        def active_food_sum
+          LineFood.active.sum(:count)
         end
 
         def validate_ordered

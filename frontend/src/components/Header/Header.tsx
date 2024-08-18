@@ -93,7 +93,7 @@ export const Header = ({
                 alt='Cart'
                 className={styles.o_header__navigation_icon}
               />
-              {requestState.status === REQUEST_STATE.OK && (
+              {requestState.status === REQUEST_STATE.OK && count !== 0 && (
                 <Badge type='success' label={count.toString()} />
               )}
             </Link>

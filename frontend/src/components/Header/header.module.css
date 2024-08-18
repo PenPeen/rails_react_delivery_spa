@@ -2,12 +2,16 @@
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 15px 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   box-sizing: border-box;
+  padding: 15px 50px;
+
+  @media (max-width: 767px) {
+    padding: 15px 30px;
+  }
 
   & .o_header__top_link {
     display: flex;
@@ -70,7 +74,10 @@
       position: absolute;
       top: 5px;
       right: 35px;
-      /* transform: translate(50%, -50%); */
+
+      @media (max-width: 767px) {
+        right: 15px;
+      }
     }
   }
 
