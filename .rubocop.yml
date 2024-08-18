@@ -9,4 +9,4 @@ inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 
 AllCops:
   Exclude:
-    - "lib/tasks/auto_annotate_models.rake"
+    - 'lib/tasks/auto_annotate_models.rake'
