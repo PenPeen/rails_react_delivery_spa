@@ -24,7 +24,8 @@ module Api
 
         if @line_food.save
           render json: {
-            line_food: @line_food
+            line_food: @line_food,
+            count: LineFood.active.sum(:count)
           }, status: :created
         else
           head :unprocessable_entity

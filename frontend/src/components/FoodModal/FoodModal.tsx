@@ -7,6 +7,8 @@ import ApiClient from "@/utils/api-client";
 import { HTTP_STATUS_CODE, lineFoods } from "@/config/constants";
 import { Food } from "@/type/food";
 import { RestaurantsNames } from "../Foods/Foods";
+import { useContext } from "react";
+import { CartContext } from "@/App";
 
 type FoodModalProps = {
   selectedFood: Food;
@@ -31,6 +33,8 @@ export const FoodModal: React.FC<FoodModalProps> = ({
   sales,
   setSales,
 }) => {
+  const [, setCount] = useContext(CartContext);
+
   const countUp = () => {
     setSales((count) => ++count);
   };
@@ -47,6 +51,9 @@ export const FoodModal: React.FC<FoodModalProps> = ({
       .post(lineFoods, {
         food_id: selectedFood.id,
         count: sales,
+      })
+      .then((data) => {
+        setCount(data.count);
       })
       .catch((e) => {
         if (e.response.status === HTTP_STATUS_CODE.NOT_ACCEPTABLE) {
