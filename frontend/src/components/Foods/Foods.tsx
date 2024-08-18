@@ -1,5 +1,5 @@
 import FoodImage from '@/assets/food-image.jpg';
-import { foodsIndex, REQUEST_STATE } from '@/config/constants';
+import { DEFAULT_RAILS_LOCALHOST, foodsIndex, REQUEST_STATE } from '@/config/constants';
 import { useRequestStatus } from '@/hooks/use_request_status';
 import { Food } from '@/type/food';
 import ApiClient from '@/utils/api-client';
@@ -80,7 +80,10 @@ export const Foods: React.FC = () => {
                     <p className={styles.foods__description_subtext}>{food.description}</p>
                   </div>
                 </div>
-                <img className={styles.foods__image} src={FoodImage} />
+                <img
+                  className={styles.foods__image}
+                  src={food.url ? `${DEFAULT_RAILS_LOCALHOST}/${food.url}` : FoodImage}
+                />
               </div>
             </div>
           ))
