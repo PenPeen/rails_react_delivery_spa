@@ -13,7 +13,7 @@ module Api
           render json: {
             line_foods: line_foods.map { _1.slice(:id, :name, :count, :price) },
             restaurant:,
-            total_price: line_foods.sum{ _1.price }
+            total_price: line_foods.sum { _1.price }
           }, status: :ok
         else
           head :no_content
