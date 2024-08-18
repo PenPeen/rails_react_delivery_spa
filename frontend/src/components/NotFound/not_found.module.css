@@ -1,0 +1,31 @@
+.notFound {
+  text-align: center;
+  padding: 4rem 1rem;
+  margin: 100px auto;
+  border-radius: 8px;
+}
+
+.notFound h1 {
+  font-size: 2.5rem;
+  color: #2C3E50
+}
+
+.notFound p {
+  color: #606c76;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.link {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  background-color: #3498db;
+  color: #ffffff;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.link:hover {
+  background-color: #2980b9
+}
