@@ -1,14 +1,14 @@
-import Modal from "../Modal/ModalContainer";
-import styles from "./food_modal.module.css";
-import OrderHeaderImage from "@/assets/order-header.png";
-import { CountDownButton } from "@/components/CountDownButton/CountDownButton";
-import { CountUpButton } from "@/components/CountUpButton/CountUpButton";
-import ApiClient from "@/utils/api-client";
-import { HTTP_STATUS_CODE, lineFoods } from "@/config/constants";
-import { Food } from "@/type/food";
-import { RestaurantsNames } from "../Foods/Foods";
-import { useContext } from "react";
-import { CartContext } from "@/App";
+import Modal from '../Modal/ModalContainer';
+import styles from './food_modal.module.css';
+import OrderHeaderImage from '@/assets/order-header.png';
+import { CountDownButton } from '@/components/CountDownButton/CountDownButton';
+import { CountUpButton } from '@/components/CountUpButton/CountUpButton';
+import ApiClient from '@/utils/api-client';
+import { HTTP_STATUS_CODE, lineFoods } from '@/config/constants';
+import { Food } from '@/type/food';
+import { RestaurantsNames } from '../Foods/Foods';
+import { useContext } from 'react';
+import { CartContext } from '@/App';
 
 type FoodModalProps = {
   selectedFood: Food;
@@ -85,11 +85,7 @@ export const FoodModal: React.FC<FoodModalProps> = ({
             isOkButton={false}
             isOpenButton={false}
           >
-            <img
-              className={styles.food_modal__header_image}
-              src={OrderHeaderImage}
-              alt='order header'
-            />
+            <img className={styles.food_modal__header_image} src={OrderHeaderImage} alt="order header" />
             <h3>{selectedFood.name}</h3>
             <div>
               <div className={styles.food_modal__description_wrapper}>
@@ -98,17 +94,9 @@ export const FoodModal: React.FC<FoodModalProps> = ({
             </div>
             <div className={styles.food_modal__sales_wrapper}>
               <div className={styles.food_modal__sales_count_wrapper}>
-                <CountDownButton
-                  size='large'
-                  handleClick={countDown}
-                  isDisabled={countDownIsDisabled()}
-                />
+                <CountDownButton size="large" handleClick={countDown} isDisabled={countDownIsDisabled()} />
                 <div>{sales}</div>
-                <CountUpButton
-                  size='large'
-                  handleClick={countUp}
-                  isDisabled={countUpIsDisabled()}
-                />
+                <CountUpButton size="large" handleClick={countUp} isDisabled={countUpIsDisabled()} />
               </div>
               <button className={styles.food_modal__order_button} onClick={submitOrder}>
                 注文に{sales}個追加する・¥{selectedFood.price * sales}

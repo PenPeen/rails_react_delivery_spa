@@ -1,7 +1,5 @@
-import { useReducer } from "react";
-import requestStatusSlice, {
-  initialState,
-} from "@/stores/request_status_reducer";
+import { useReducer } from 'react';
+import requestStatusSlice, { initialState } from '@/stores/request_status_reducer';
 
 const { actions, reducer } = requestStatusSlice;
 const { fetching, success } = actions;
