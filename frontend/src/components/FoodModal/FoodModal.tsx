@@ -16,9 +16,7 @@ type FoodModalProps = {
   handleOpenModal: () => void;
   handleCloseModal: () => void;
   handleOpenNewOrderModal: () => void;
-  setRestaurantsNames: React.Dispatch<
-    React.SetStateAction<RestaurantsNames | undefined>
-  >;
+  setRestaurantsNames: React.Dispatch<React.SetStateAction<RestaurantsNames | undefined>>;
   sales: number;
   setSales: React.Dispatch<React.SetStateAction<number>>;
 };
@@ -34,6 +32,10 @@ export const FoodModal: React.FC<FoodModalProps> = ({
   setSales,
 }) => {
   const [, setCount] = useContext(CartContext);
+  const modalCloseAndResetSales = () => {
+    handleCloseModal();
+    setSales(1);
+  };
 
   const countUp = () => {
     setSales((count) => ++count);
@@ -67,7 +69,7 @@ export const FoodModal: React.FC<FoodModalProps> = ({
         }
       })
       .finally(() => {
-        handleCloseModal();
+        modalCloseAndResetSales();
       });
   };
 
@@ -78,7 +80,7 @@ export const FoodModal: React.FC<FoodModalProps> = ({
           <Modal
             showModal={showModal}
             handleOpenModal={handleOpenModal}
-            handleCloseModal={handleCloseModal}
+            handleCloseModal={modalCloseAndResetSales}
             isCancelButton={false}
             isOkButton={false}
             isOpenButton={false}
@@ -91,9 +93,7 @@ export const FoodModal: React.FC<FoodModalProps> = ({
             <h3>{selectedFood.name}</h3>
             <div>
               <div className={styles.food_modal__description_wrapper}>
-                <p className={styles.food_modal__description_subtext}>
-                  {selectedFood.description}
-                </p>
+                <p className={styles.food_modal__description_subtext}>{selectedFood.description}</p>
               </div>
             </div>
             <div className={styles.food_modal__sales_wrapper}>
@@ -110,10 +110,7 @@ export const FoodModal: React.FC<FoodModalProps> = ({
                   isDisabled={countUpIsDisabled()}
                 />
               </div>
-              <button
-                className={styles.food_modal__order_button}
-                onClick={submitOrder}
-              >
+              <button className={styles.food_modal__order_button} onClick={submitOrder}>
                 注文に{sales}個追加する・¥{selectedFood.price * sales}
               </button>
             </div>
