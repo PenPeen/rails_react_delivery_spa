@@ -1,9 +1,10 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Foods, Orders, Restaurants } from './components';
-import { Header } from './components/Header/Header';
+import { Header } from '@/components/Header/Header';
 import { createContext, useReducer } from 'react';
 import CartSlice, { initialState } from './stores/cart_reducer';
+import NotFound from '@/components/NotFound/NotFound';
 
 type CartContextType = [number, (count: number) => void];
 export const CartContext = createContext<CartContextType>({} as never);
@@ -27,6 +28,7 @@ function App() {
               <Route path="/restaurants" element={<Restaurants />} />
               <Route path="/restaurants/:restaurantsId/foods" element={<Foods />} />
               <Route path="/orders" element={<Orders />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
         </BrowserRouter>
