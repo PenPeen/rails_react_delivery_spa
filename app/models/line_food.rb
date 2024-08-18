@@ -30,7 +30,7 @@ class LineFood < ApplicationRecord
 
   validates :count, numericality: { greater_than: 0 }
 
-  delegate :name, :price, to: :food
+  delegate :name, :price, :url, to: :food
 
   scope :active, -> { where(active: true) }
   scope :other_restaurant, ->(picked_restaurant_id) { where.not(restaurant_id: picked_restaurant_id) }
