@@ -11,7 +11,7 @@ module Api
           restaurant = line_foods.first.restaurant
 
           render json: {
-            line_foods: line_foods.map { _1.slice(:id, :name, :count, :price) },
+            line_foods: line_foods.map { _1.slice(:id, :name, :count, :price, :url) },
             restaurant:,
             total_price: line_foods.sum { _1.price }
           }, status: :ok
