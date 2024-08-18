@@ -23,7 +23,7 @@ export type RestaurantsNames = {
 export const Foods: React.FC = () => {
   const { restaurantsId } = useParams();
   const [foods, setFoods] = useState<Food[]>();
-  const { state, fetching, success } = useRequestStatus();
+  const { requestState, fetching, success } = useRequestStatus();
   const [showModal, handleOpenModal, handleCloseModal] = useModal();
   const [selectedFood, setSelectedFood] = useState<Food>();
   const [
@@ -75,7 +75,7 @@ export const Foods: React.FC = () => {
     <>
       <div className={styles.foods__header_wrapper}></div>
       <div className={styles.foods__list}>
-        {state.status === REQUEST_STATE.LOADING ? (
+        {requestState.status === REQUEST_STATE.LOADING ? (
           <>
             {[...Array(12).keys()].map((i) => (
               <div className={styles.foods__item_wrapper} key={i}>

@@ -15,7 +15,7 @@ import { Skeleton } from "@mui/material";
 import { Restaurant } from "@/type/restaurant";
 
 export const Restaurants = () => {
-  const { state, fetching, success } = useRequestStatus();
+  const { requestState, fetching, success } = useRequestStatus();
   const [restaurants, setRestaurants] = useState<Restaurant[]>();
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export const Restaurants = () => {
         />
       </div>
       <div className={styles.restaurants__contents_list}>
-        {state.status === REQUEST_STATE.LOADING ? (
+        {requestState.status === REQUEST_STATE.LOADING ? (
           <>
             <Skeleton variant='rectangular' width={450} height={300} />
             <Skeleton variant='rectangular' width={450} height={300} />
