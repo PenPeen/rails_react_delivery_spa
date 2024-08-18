@@ -25,6 +25,7 @@ export const Foods: React.FC = () => {
   const [selectedFood, setSelectedFood] = useState<Food>();
   const [restaurantsNames, setRestaurantsNames] = useState<RestaurantsNames>();
   const [sales, setSales] = useState(1);
+  const resetSales = () => setSales(1);
 
   useEffect(() => {
     if (!restaurantsId) return;
@@ -68,6 +69,7 @@ export const Foods: React.FC = () => {
                 className={styles.foods__wrapper}
                 onClick={() => {
                   setSelectedFood(food);
+                  resetSales();
                   handleFoodOpenModal();
                 }}
               >
@@ -88,7 +90,10 @@ export const Foods: React.FC = () => {
       {showFoodModal && (
         <FoodModal
           showModal={showFoodModal}
-          handleOpenModal={handleFoodOpenModal}
+          handleOpenModal={() => {
+            resetSales();
+            handleFoodOpenModal();
+          }}
           handleCloseModal={handleFoodCloseModal}
           selectedFood={selectedFood!}
           handleOpenNewOrderModal={handleOpenNewOrderModal}

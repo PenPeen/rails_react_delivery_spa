@@ -34,7 +34,6 @@ export const FoodModal: React.FC<FoodModalProps> = ({
   const [, setCount] = useContext(CartContext);
   const modalCloseAndResetSales = () => {
     handleCloseModal();
-    setSales(1);
   };
 
   const countUp = () => {
