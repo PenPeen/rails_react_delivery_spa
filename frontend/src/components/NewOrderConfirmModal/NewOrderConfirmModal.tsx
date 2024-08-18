@@ -1,10 +1,10 @@
-import ApiClient from "@/utils/api-client";
-import Modal from "@/components/Modal/ModalContainer";
-import styles from "./new_order_confirm.module.css";
-import { lineFoodsReplace } from "@/config/constants";
-import { Food } from "@/type/food";
-import { useContext } from "react";
-import { CartContext } from "@/App";
+import ApiClient from '@/utils/api-client';
+import Modal from '@/components/Modal/ModalContainer';
+import styles from './new_order_confirm.module.css';
+import { lineFoodsReplace } from '@/config/constants';
+import { Food } from '@/type/food';
+import { useContext } from 'react';
+import { CartContext } from '@/App';
 
 type NewOrderConfirmModalProps = {
   selectedFood: Food;
@@ -61,10 +61,7 @@ export const NewOrderConfirmModal: React.FC<NewOrderConfirmModalProps> = ({
             {`ご注文に ${existingResutaurautName} の商品が含まれています。
             新規の注文を開始して ${newResutaurautName} の商品を追加しますか？`}
           </p>
-          <button
-            className={styles.new_order_confirm_modal__new_order_button}
-            onClick={confirmedOrder}
-          >
+          <button className={styles.new_order_confirm_modal__new_order_button} onClick={confirmedOrder}>
             新規注文
           </button>
         </Modal>

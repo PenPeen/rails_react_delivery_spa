@@ -1,17 +1,17 @@
-import React, { PropsWithChildren } from "react";
-import ReactModal from "react-modal";
-import closeLogo from "@/assets/close.svg";
-import { Button } from "@/components/Button/Button";
-import styles from "./modal.module.css";
-import { ModalProps } from "./ModalContainer";
+import React, { PropsWithChildren } from 'react';
+import ReactModal from 'react-modal';
+import closeLogo from '@/assets/close.svg';
+import { Button } from '@/components/Button/Button';
+import styles from './modal.module.css';
+import { ModalProps } from './ModalContainer';
 
 const ModalPresentational: React.FC<ModalProps & PropsWithChildren> = ({
   showModal,
   handleOpenModal,
   handleCloseModal,
-  openLabel = "Open Modal",
-  cancelLabel = "CANCEL",
-  okLabel = "OK",
+  openLabel = 'Open Modal',
+  cancelLabel = 'CANCEL',
+  okLabel = 'OK',
   children,
   isOpenButton = true,
   isCloseButton = true,
@@ -29,7 +29,7 @@ const ModalPresentational: React.FC<ModalProps & PropsWithChildren> = ({
       <ReactModal
         isOpen={showModal}
         onRequestClose={handleCloseModal}
-        contentLabel='Modal'
+        contentLabel="Modal"
         className={styles.o_modal__contents}
         overlayClassName={{
           base: styles.o_modal__overlay,
@@ -39,12 +39,8 @@ const ModalPresentational: React.FC<ModalProps & PropsWithChildren> = ({
         ariaHideApp={false}
       >
         {isCloseButton && (
-          <button
-            type='button'
-            className={styles.o_modal__close_button}
-            onClick={handleCloseModal}
-          >
-            <img src={closeLogo} alt='close button' height={16} width={16} />
+          <button type="button" className={styles.o_modal__close_button} onClick={handleCloseModal}>
+            <img src={closeLogo} alt="close button" height={16} width={16} />
           </button>
         )}
 

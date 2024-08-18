@@ -1,12 +1,12 @@
-import styles from "./header.module.css";
-import { Link } from "react-router-dom";
-import CartIcon from "@/assets/shopping-cart.svg";
-import { useContext, useEffect } from "react";
-import ApiClient from "@/utils/api-client";
-import { lineFoodsCount, REQUEST_STATE } from "@/config/constants";
-import { useRequestStatus } from "@/hooks/use_request_status";
-import { CartContext } from "@/App";
-import { Badge } from "../Badge/Badge";
+import styles from './header.module.css';
+import { Link } from 'react-router-dom';
+import CartIcon from '@/assets/shopping-cart.svg';
+import { useContext, useEffect } from 'react';
+import ApiClient from '@/utils/api-client';
+import { lineFoodsCount, REQUEST_STATE } from '@/config/constants';
+import { useRequestStatus } from '@/hooks/use_request_status';
+import { CartContext } from '@/App';
+import { Badge } from '../Badge/Badge';
 
 type User = {
   name: string;
@@ -30,13 +30,7 @@ export interface HeaderProps {
   onLogout?: () => void;
 }
 
-export const Header = ({
-  title,
-  logoUrl,
-  navigations,
-  isDark = false,
-  isFixed = false,
-}: HeaderProps) => {
+export const Header = ({ title, logoUrl, navigations, isDark = false, isFixed = false }: HeaderProps) => {
   const [count, setCount] = useContext(CartContext);
   const { requestState, fetching, success } = useRequestStatus();
 
@@ -58,13 +52,11 @@ export const Header = ({
   }
 
   return (
-    <header className={mode.join(" ")}>
+    <header className={mode.join(' ')}>
       <div>
         <div className={styles.o_header__left_contents}>
-          <Link to='/' className={styles.o_header__top_link}>
-            {logoUrl && (
-              <img className={styles.o_header__logo} src={logoUrl} alt='logo' />
-            )}
+          <Link to="/" className={styles.o_header__top_link}>
+            {logoUrl && <img className={styles.o_header__logo} src={logoUrl} alt="logo" />}
             {title && <h1 className={styles.o_header__title}>{title}</h1>}
           </Link>
           {navigations ? (
@@ -87,14 +79,10 @@ export const Header = ({
       <div>
         <div className={styles.o_header__right_contents}>
           <div className={styles.o_header__navigation_icon_wrapper}>
-            <Link to='/orders'>
-              <img
-                src={CartIcon}
-                alt='Cart'
-                className={styles.o_header__navigation_icon}
-              />
+            <Link to="/orders">
+              <img src={CartIcon} alt="Cart" className={styles.o_header__navigation_icon} />
               {requestState.status === REQUEST_STATE.OK && count !== 0 && (
-                <Badge type='success' label={count.toString()} />
+                <Badge type="success" label={count.toString()} />
               )}
             </Link>
           </div>

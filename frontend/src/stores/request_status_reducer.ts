@@ -1,5 +1,5 @@
-import { REQUEST_STATE } from "@/config/constants/request_state_constants";
-import { createSlice } from "@reduxjs/toolkit";
+import { REQUEST_STATE } from '@/config/constants/request_state_constants';
+import { createSlice } from '@reduxjs/toolkit';
 
 type ValueOf<T> = T[keyof T];
 
@@ -12,7 +12,7 @@ export const initialState: RequestStatusState = {
 };
 
 const requestStatusSlice = createSlice({
-  name: "request",
+  name: 'request',
   initialState,
   reducers: {
     fetching: (state) => {

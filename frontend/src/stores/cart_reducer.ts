@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface CartState {
   count: number;
@@ -9,7 +9,7 @@ export const initialState: CartState = {
 };
 
 const CartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState,
   reducers: {
     setCount: (state, action: PayloadAction<number>) => {

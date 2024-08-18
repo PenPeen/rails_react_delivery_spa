@@ -1,15 +1,15 @@
-import FoodImage from "@/assets/food-image.jpg";
-import { foodsIndex, REQUEST_STATE } from "@/config/constants";
-import { useRequestStatus } from "@/hooks/use_request_status";
-import { Food } from "@/type/food";
-import ApiClient from "@/utils/api-client";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import styles from "./foods.module.css";
-import { Skeleton } from "@mui/material";
-import { FoodModal } from "../FoodModal/FoodModal";
-import { useModal } from "../Modal/useModal";
-import { NewOrderConfirmModal } from "../NewOrderConfirmModal/NewOrderConfirmModal";
+import FoodImage from '@/assets/food-image.jpg';
+import { foodsIndex, REQUEST_STATE } from '@/config/constants';
+import { useRequestStatus } from '@/hooks/use_request_status';
+import { Food } from '@/type/food';
+import ApiClient from '@/utils/api-client';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import styles from './foods.module.css';
+import { Skeleton } from '@mui/material';
+import { FoodModal } from '../FoodModal/FoodModal';
+import { useModal } from '../Modal/useModal';
+import { NewOrderConfirmModal } from '../NewOrderConfirmModal/NewOrderConfirmModal';
 
 export type RestaurantsNames = {
   exist: string;
@@ -38,13 +38,13 @@ export const Foods: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const body = document.querySelector("body");
+    const body = document.querySelector('body');
     if (body == undefined) return;
 
     if (showFoodModal) {
-      body.style.overflow = "hidden";
+      body.style.overflow = 'hidden';
     } else {
-      body.style.overflow = "";
+      body.style.overflow = '';
     }
   }, [showFoodModal]);
 
@@ -56,7 +56,7 @@ export const Foods: React.FC = () => {
           <>
             {[...Array(12).keys()].map((i) => (
               <div className={styles.foods__item_wrapper} key={i}>
-                <Skeleton variant='rectangular' width={450} height={180} />
+                <Skeleton variant="rectangular" width={450} height={180} />
               </div>
             ))}
           </>
