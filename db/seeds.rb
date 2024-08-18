@@ -8,6 +8,21 @@ restaurant_images = [
 ]
 
 food_names = [ "カレーライス", "寿司盛り合わせ", "特製うどん", "天ぷら定食", "焼き鳥セット", "ラーメン", "餃子セット", "オムライス", "ビーフステーキ", "サラダ", "スープ", "デザート" ]
+food_images=[
+  "curry.jpg",
+  "sushi.jpg",
+  "udon.jpeg",
+  "tenpura.jpg",
+  "yakitori.jpg",
+  "ramen.jpg",
+  "gyoza.jpg",
+  "omuraisu.jpg",
+  "steak.jpg",
+  "salad.jpg",
+  "soup.jpg",
+  "desert.jpg"
+]
+
 food_descriptions = [
   "当店自慢のカレーライス。スパイスが効いており、辛さも選べます。",
   "新鮮な魚介をふんだんに使用した寿司盛り合わせ。味も見た目も満足の一品です。",
@@ -36,7 +51,8 @@ ActiveRecord::Base.transaction do
       restaurant.foods.build(
         name: food_names[m % food_names.size],
         price: [ 300, 400, 500, 600, 700 ].sample,
-        description: food_descriptions[m % food_descriptions.size]
+        description: food_descriptions[m % food_descriptions.size],
+        url: food_images[m]
       )
     end
 
