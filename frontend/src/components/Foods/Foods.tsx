@@ -20,13 +20,9 @@ export const Foods: React.FC = () => {
   const { restaurantsId } = useParams();
   const [foods, setFoods] = useState<Food[]>();
   const { requestState, fetching, success } = useRequestStatus();
-  const [showModal, handleOpenModal, handleCloseModal] = useModal();
+  const [showFoodModal, handleFoodOpenModal, handleFoodCloseModal] = useModal();
+  const [showNewOrderModal, handleOpenNewOrderModal, handleClosenNewOrderModal] = useModal();
   const [selectedFood, setSelectedFood] = useState<Food>();
-  const [
-    showNewOrderModal,
-    handleOpenNewOrderModal,
-    handleClosenNewOrderModal,
-  ] = useModal();
   const [restaurantsNames, setRestaurantsNames] = useState<RestaurantsNames>();
   const [sales, setSales] = useState(1);
 
@@ -45,12 +41,12 @@ export const Foods: React.FC = () => {
     const body = document.querySelector("body");
     if (body == undefined) return;
 
-    if (showModal) {
+    if (showFoodModal) {
       body.style.overflow = "hidden";
     } else {
       body.style.overflow = "";
     }
-  }, [showModal]);
+  }, [showFoodModal]);
 
   return (
     <>
@@ -72,16 +68,14 @@ export const Foods: React.FC = () => {
                 className={styles.foods__wrapper}
                 onClick={() => {
                   setSelectedFood(food);
-                  handleOpenModal();
+                  handleFoodOpenModal();
                 }}
               >
                 <div className={styles.foods__detail}>
                   <p className={styles.foods__name}>{food.name}</p>
                   <div className={styles.foods__price}>¥{food.price}</div>
                   <div className={styles.foods__description_wrapper}>
-                    <p className={styles.foods__description_subtext}>
-                      {food.description}
-                    </p>
+                    <p className={styles.foods__description_subtext}>{food.description}</p>
                   </div>
                 </div>
                 <img className={styles.foods__image} src={FoodImage} />
@@ -91,11 +85,11 @@ export const Foods: React.FC = () => {
         )}
       </div>
 
-      {showModal && (
+      {showFoodModal && (
         <FoodModal
-          showModal={showModal}
-          handleOpenModal={handleOpenModal}
-          handleCloseModal={handleCloseModal}
+          showModal={showFoodModal}
+          handleOpenModal={handleFoodOpenModal}
+          handleCloseModal={handleFoodCloseModal}
           selectedFood={selectedFood!}
           handleOpenNewOrderModal={handleOpenNewOrderModal}
           setRestaurantsNames={setRestaurantsNames}
