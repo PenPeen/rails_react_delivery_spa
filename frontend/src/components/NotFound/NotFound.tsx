@@ -1,6 +1,6 @@
-import React from "react";
-import styles from "./not_found.module.css";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styles from './not_found.module.css';
+import { Link } from 'react-router-dom';
 
 type NotFoundProps = {
   title?: string;
@@ -10,10 +10,10 @@ type NotFoundProps = {
 };
 
 const NotFound: React.FC<NotFoundProps> = ({
-  title = "404 Not Found",
-  message = "The page you are looking for does not exist.",
-  link = "/",
-  linkText = "Back to Home",
+  title = '404 Not Found',
+  message = 'The page you are looking for does not exist.',
+  link = '/',
+  linkText = 'Back to Home',
 }) => {
   return (
     <div className={styles.notFound}>
