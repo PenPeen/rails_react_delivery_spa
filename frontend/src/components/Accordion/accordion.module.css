@@ -1,0 +1,101 @@
+.m_accordion {
+  width: 100%;
+}
+
+.m_accordion__summary {
+  display: block;
+}
+
+.m_accordion__summary::-webkit-details-marker {
+  display: none;
+}
+
+.m_accordion__heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.m_accordion__summary_inner {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  font-weight: bold;
+}
+
+.m_accordion__primary .m_accordion__summary_inner {
+  border: 1px solid #d2beff;
+  color: #002255;
+}
+
+.m_accordion__secondary .m_accordion__summary_inner {
+  border: 1px solid #cccccc;
+  color: #333333;
+}
+
+.m_accordion__icon {
+  display: block;
+  position: relative;
+  width: 24px;
+  margin-left: 6px;
+  flex-shrink: 0;
+  transform_origin: center 43%;
+  transition: transform 0.4s;
+  transition: transform 0.4s;
+}
+
+.m_accordion__opened .m_accordion__icon {
+  transform: rotate(180deg);
+}
+
+.m_accordion__icon::before {
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.m_accordion__icon::after {
+  right: 0;
+  transform: rotate(-45deg);
+}
+
+.m_accordion__icon::before,
+.m_accordion__icon::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 15px;
+  height: 3px;
+}
+
+.m_accordion__primary .m_accordion__icon::before,
+.m_accordion__icon::after {
+  background-color: #7050ff;
+}
+
+.m_accordion__secondary .m_accordion__icon::before,
+.m_accordion__secondary .m_accordion__icon::after {
+  background-color: #666666;
+}
+
+.m_accordion__content {
+  overflow: hidden;
+}
+
+.m_accordion__primary .m_accordion__content {
+  background-color: #f0f2ff;
+}
+
+.m_accordion__secondary .m_accordion__content {
+  background-color: #e6e6e6;
+}
+
+.m_accordion__content_inner {
+  padding: 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
