@@ -35,7 +35,7 @@ export const Orders: React.FC = () => {
     return (
       <>
         {orderInfo && (
-          <>
+          <div className={styles.o_orders__order_wrapper}>
             <div className={styles.o_order__cards_wrapper}>
               <h3 className={styles.o_order__heading}>配達の詳細</h3>
               <div className={styles.o_orders__restaurant_wrapper}>
@@ -102,9 +102,9 @@ export const Orders: React.FC = () => {
               <h3 className={styles.o_orders__total_price_label}>
                 合計 <span>¥ {orderInfo.total_price.toLocaleString()}</span>
               </h3>
-              <Button label={'本ページの内容を確認の上、注文を確定する'} type={'success'} isSolid />
+              <Button label={'本ページの内容を確認の上、注文を確定する'} type={'success'} isSolid isFull />
             </div>
-          </>
+          </div>
         )}
       </>
     );
@@ -113,8 +113,12 @@ export const Orders: React.FC = () => {
   const NotOrdersFood: FC = () => {
     return (
       <>
-        <span>新しいカートを作成するには、レストランやお店から商品を追加します</span>
-        <img className={styles.o_orders__not_order_image} src={OrderHeaderImage} />
+        <div className={styles.o_orders__not_order_wrapper}>
+          <span className={styles.o_orders__not_order_text}>
+            新しいカートを作成するには、レストランやお店から商品を追加します
+          </span>
+          <img className={styles.o_orders__not_order_image} src={OrderHeaderImage} />
+        </div>
       </>
     );
   };
