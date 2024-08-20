@@ -137,3 +137,7 @@
 .a_button__radius {
   border-radius: 3em;
 }
+
+.a_button__full {
+  width: 100%;
+}
