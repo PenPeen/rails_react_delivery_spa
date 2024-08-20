@@ -1,0 +1,101 @@
+.o_orders {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  top: 20px;
+
+  & .o_orders__order_wrapper {
+    background-color: rgb(251, 251, 251);
+    border-radius: 24px;
+    padding: 24px;
+
+    & .o_order__heading {
+      font-size: 20px;
+      margin: 0;
+      margin-bottom: 16px;
+    }
+
+    & .o_orders__restaurant_wrapper {
+      width: 100%;
+
+      & .o_orders__restaurant_contents {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+
+      & .o_orders__restaurant_image {
+        background-size: cover;
+        border-radius: 50%;
+        width: 72px;
+        height: 72px;
+      }
+
+      & .o_orders__restaurant_link {
+        align-items: center;
+        color: unset;
+        display: flex;
+        justify-content: space-between;
+        text-decoration: none;
+        margin-bottom: 16px;
+      }
+
+      & .o_orders__restaurant_name {
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+
+    & .o_orders__line_wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    & .o_orders__sub_text {
+      font-size: 16px;
+      color: rgb(75, 75, 75);
+    }
+
+    & .o_orders__accordion_wrapper {
+      margin: 24px 0;
+
+      & .o_orders__line_food_contents {
+        align-items: center;
+        display: flex;
+        gap: 16px;
+        justify-content: space-between;
+
+        & .o_orders__line_food_image_and_name {
+          display: flex;
+          gap: 16px;
+          align-items: center;
+
+          & .o_orders__line_food_image {
+            background-size: cover;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+          }
+        }
+      }
+    }
+  }
+
+  & .o_orders__not_order_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & .o_orders__not_order_text {
+      margin-bottom: 16px;
+    }
+
+    & .o_orders__not_order_image {
+      width: 100%;
+      max-width: 500px;
+    }
+  }
+}
