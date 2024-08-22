@@ -4,7 +4,8 @@ restaurant_images = [
   "taro_sushi.jpg",
   "tanaka_udon.jpg",
   "menya_totoro.jpg",
-  "genchan_syokudo.jpg"
+  "genchan_syokudo.jpg",
+  "burger.jpg"
 ]
 
 food_names = [ "カレーライス", "寿司盛り合わせ", "特製うどん", "天ぷら定食", "焼き鳥セット", "ラーメン", "餃子セット", "オムライス", "ビーフステーキ", "サラダ", "スープ", "デザート" ]
