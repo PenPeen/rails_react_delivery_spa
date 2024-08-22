@@ -250,7 +250,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   bootsnap
-  brakeman
+  brakeman (= 6.2.1)
   debug
   mysql2
   puma (>= 5.0)
