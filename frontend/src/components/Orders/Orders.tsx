@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useRequestStatus } from '@/hooks/use_request_status';
 import ApiClient from '@/utils/api-client';
-import { DEFAULT_RAILS_LOCALHOST, lineFoods, REQUEST_STATE } from '@/config/constants';
+import { DEFAULT_RAILS_LOCALHOST, defaultRestaurantImage, lineFoods, REQUEST_STATE } from '@/config/constants';
 import { OrderFood, Restaurant } from '@/type';
 import OrderHeaderImage from '@/assets/order-header.png';
 import styles from './order.module.css';
@@ -43,7 +43,11 @@ export const Orders: React.FC = () => {
                   <div className={styles.o_orders__restaurant_contents}>
                     <div
                       className={styles.o_orders__restaurant_image}
-                      style={{ backgroundImage: `url(${DEFAULT_RAILS_LOCALHOST}/${orderInfo.restaurant.url})` }}
+                      style={{
+                        backgroundImage: orderInfo.restaurant.url
+                          ? `url(${DEFAULT_RAILS_LOCALHOST}/${orderInfo.restaurant.url})`
+                          : `url(${defaultRestaurantImage})`,
+                      }}
                     ></div>
                     <div className={styles.o_orders__restaurant_name}>{orderInfo.restaurant.name}</div>
                   </div>
