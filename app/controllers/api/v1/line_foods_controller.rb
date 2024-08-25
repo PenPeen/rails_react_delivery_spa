@@ -22,7 +22,7 @@ module Api
       end
 
       def create
-        set_line_food(@ordered_food)
+        update_or_build_line_food(@ordered_food)
 
         if @line_food.save
           render json: {
@@ -38,7 +38,7 @@ module Api
         ActiveRecord::Base.transaction do
           LineFood.other_restaurant(@ordered_food.restaurant.id).each(&:destroy!)
 
-          set_line_food(@ordered_food)
+          update_or_build_line_food(@ordered_food)
 
           if @line_food.save!
             render json: {
@@ -75,7 +75,7 @@ module Api
           end
         end
 
-        def set_line_food(ordered_food)
+        def update_or_build_line_food(ordered_food)
           if ordered_food.line_food.present?
             @line_food = ordered_food.line_food
             @line_food.attributes = {
