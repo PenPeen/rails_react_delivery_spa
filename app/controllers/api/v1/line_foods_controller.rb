@@ -2,6 +2,7 @@ module Api
   module V1
     class LineFoodsController < ApplicationController
       before_action :set_ordered_food, only: %i[create replace]
+      before_action :set_line_food, only: %i[destroy]
       before_action :validate_ordered, only: %i[create]
 
       def index
@@ -51,15 +52,27 @@ module Api
         end
       end
 
+      def destroy
+        @line_food.destroy!
+
+        head :no_content
+      rescue
+        head :internal_server_error
+      end
+
       def cart_count
         render json: {
           count: food_sum
-        }, status: :ok
-      end
+          }, status: :ok
+        end
 
-      private
+        private
         def set_ordered_food
           @ordered_food = Food.find(params[:food_id])
+        end
+
+        def set_line_food
+          @line_food = LineFood.find(params[:id])
         end
 
         def food_sum

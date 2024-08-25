@@ -5,7 +5,7 @@ Rails.application.routes.draw do
         resources :foods, only: %i[index]
       end
 
-      resources :line_foods, only: %i[index create]
+      resources :line_foods, only: %i[index create destroy]
       put "line_foods/replace", to: "line_foods#replace"
       get "line_foods/cart_count", to: "line_foods#cart_count"
       resources :orders, only: %i[create]
