@@ -1,7 +1,8 @@
 module Api
   module V1
     class LineFoodsController < ApplicationController
-      before_action :set_food, only: %i[create replace]
+      before_action :set_ordered_food, only: %i[create replace]
+      before_action :set_line_food, only: %i[destroy]
       before_action :validate_ordered, only: %i[create]
 
       def index
@@ -22,7 +23,7 @@ module Api
       end
 
       def create
-        set_line_food(@ordered_food)
+        update_or_build_line_food(@ordered_food)
 
         if @line_food.save
           render json: {
@@ -38,7 +39,7 @@ module Api
         ActiveRecord::Base.transaction do
           LineFood.other_restaurant(@ordered_food.restaurant.id).each(&:destroy!)
 
-          set_line_food(@ordered_food)
+          update_or_build_line_food(@ordered_food)
 
           if @line_food.save!
             render json: {
@@ -51,15 +52,27 @@ module Api
         end
       end
 
+      def destroy
+        @line_food.destroy!
+
+        head :no_content
+      rescue
+        head :internal_server_error
+      end
+
       def cart_count
         render json: {
           count: food_sum
-        }, status: :ok
-      end
+          }, status: :ok
+        end
 
-      private
-        def set_food
+        private
+        def set_ordered_food
           @ordered_food = Food.find(params[:food_id])
+        end
+
+        def set_line_food
+          @line_food = LineFood.find(params[:id])
         end
 
         def food_sum
@@ -75,7 +88,7 @@ module Api
           end
         end
 
-        def set_line_food(ordered_food)
+        def update_or_build_line_food(ordered_food)
           if ordered_food.line_food.present?
             @line_food = ordered_food.line_food
             @line_food.attributes = {
