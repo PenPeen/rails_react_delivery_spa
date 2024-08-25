@@ -1,7 +1,7 @@
 module Api
   module V1
     class LineFoodsController < ApplicationController
-      before_action :set_food, only: %i[create replace]
+      before_action :set_ordered_food, only: %i[create replace]
       before_action :validate_ordered, only: %i[create]
 
       def index
@@ -58,7 +58,7 @@ module Api
       end
 
       private
-        def set_food
+        def set_ordered_food
           @ordered_food = Food.find(params[:food_id])
         end
 
