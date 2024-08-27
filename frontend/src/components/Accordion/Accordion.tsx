@@ -1,9 +1,11 @@
-import React, { PropsWithChildren, useEffect, useRef } from 'react';
+import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import AccordionPresentational from './AccordionPresentational';
 import styles from './accordion.module.css';
 import { animTiming, closingAnimKeyframes, openingAnimKeyframes } from '@/utils/animations';
 
 export interface AccordionContainerProps {
+  isOpen?: boolean;
+  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   primary?: boolean;
   label: string;
   duration?: number;
@@ -12,6 +14,8 @@ export interface AccordionContainerProps {
 const IS_OPENED_CLASS = styles.m_accordion__opened;
 
 const AccordionContainer: React.FC<AccordionContainerProps & PropsWithChildren> = ({
+  isOpen = false,
+  setIsOpen = () => {},
   primary = true,
   label,
   duration = 300,
@@ -24,6 +28,10 @@ const AccordionContainer: React.FC<AccordionContainerProps & PropsWithChildren> 
   useEffect(() => {
     if (contentRef.current) {
       detailsRef.current = contentRef.current.parentNode as HTMLDetailsElement;
+
+      if (detailsRef.current && isOpen) {
+        detailsRef.current.classList.add(IS_OPENED_CLASS);
+      }
     }
   }, []);
 
@@ -36,6 +44,7 @@ const AccordionContainer: React.FC<AccordionContainerProps & PropsWithChildren> 
     const details = detailsRef.current;
     details.dataset.animStatus = 'running';
     details.classList.toggle(IS_OPENED_CLASS);
+    setIsOpen((isOpen) => !isOpen);
 
     const content = contentRef.current!;
     if (details.open) {
@@ -55,6 +64,7 @@ const AccordionContainer: React.FC<AccordionContainerProps & PropsWithChildren> 
 
   return (
     <AccordionPresentational
+      isOpen={isOpen}
       label={label}
       mode={mode}
       handleSummaryClick={handleSummaryOnClick}

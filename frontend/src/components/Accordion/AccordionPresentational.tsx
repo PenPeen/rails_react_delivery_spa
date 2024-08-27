@@ -9,6 +9,7 @@ interface AccordionPresentationalProps extends AccordionContainerProps {
 }
 
 const AccordionPresentational: React.FC<PropsWithChildren<AccordionPresentationalProps>> = ({
+  isOpen,
   label,
   mode,
   handleSummaryClick,
@@ -16,7 +17,7 @@ const AccordionPresentational: React.FC<PropsWithChildren<AccordionPresentationa
   children,
 }) => {
   return (
-    <details className={[styles.m_accordion, mode].join(' ')}>
+    <details open={Boolean(isOpen)} className={[styles.m_accordion, mode].join(' ')}>
       <summary className={styles.m_accordion__summary} onClick={handleSummaryClick}>
         <span className={styles.m_accordion__summary_inner}>
           {label}
