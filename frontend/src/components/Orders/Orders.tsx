@@ -1,7 +1,14 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { useRequestStatus } from '@/hooks/use_request_status';
 import ApiClient from '@/utils/api-client';
-import { DEFAULT_RAILS_LOCALHOST, defaultRestaurantImage, lineFoods, REQUEST_STATE } from '@/config/constants';
+import {
+  DEFAULT_RAILS_LOCALHOST,
+  defaultRestaurantImage,
+  lineFoodDestroy,
+  lineFoods,
+  lineFoodsCount,
+  REQUEST_STATE,
+} from '@/config/constants';
 import { OrderFood, Restaurant } from '@/type';
 import OrderHeaderImage from '@/assets/order-header.png';
 import styles from './order.module.css';
@@ -9,6 +16,7 @@ import { Link } from 'react-router-dom';
 import Accordion from '../Accordion/Accordion';
 import { Button } from '../Button/Button';
 import { Badge } from '../Badge/Badge';
+import { CartContext } from '@/App';
 
 type OrderInfo = {
   line_foods: OrderFood[];
@@ -20,8 +28,14 @@ type OrderInfo = {
 export const Orders: React.FC = () => {
   const { requestState, fetching, success } = useRequestStatus();
   const [orderInfo, setOrderInfo] = useState<OrderInfo>();
+  const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+  const [, setCount] = useContext(CartContext);
 
   useEffect(() => {
+    fetchOrderFoods();
+  }, []);
+
+  const fetchOrderFoods = () => {
     fetching();
 
     const client = new ApiClient();
@@ -29,7 +43,29 @@ export const Orders: React.FC = () => {
       setOrderInfo(data);
       success();
     });
-  }, []);
+  };
+
+  const DeleteOrderFoods = (lineFoodId: string) => {
+    fetching();
+
+    const client = new ApiClient();
+    client
+      .delete(lineFoodDestroy(lineFoodId))
+      .then((data) => {
+        setOrderInfo(data);
+      })
+      .then(() => {
+        fetchOrderFoods();
+      })
+      .then(() => {
+        client.get(lineFoodsCount).then((data) => {
+          setCount(data.count);
+        });
+      })
+      .finally(() => {
+        success();
+      });
+  };
 
   const OrdersFood: FC = () => {
     return (
@@ -68,7 +104,13 @@ export const Orders: React.FC = () => {
             </div>
 
             <div className={styles.o_orders__accordion_wrapper}>
-              <Accordion primary={false} label={`カートの中身（${orderInfo.total_count}）`} duration={200}>
+              <Accordion
+                isOpen={isAccordionOpen}
+                setIsOpen={setIsAccordionOpen}
+                primary={false}
+                label={`カートの中身（${orderInfo.total_count}）`}
+                duration={200}
+              >
                 {orderInfo.line_foods.map((line_food) => {
                   return (
                     <div className={styles.o_orders__line_food_contents} key={line_food.id}>
@@ -80,8 +122,15 @@ export const Orders: React.FC = () => {
                         <div>{line_food.name}</div>
                         <div>¥{line_food.price.toLocaleString()}</div>
                       </div>
-                      <Badge label={line_food.count.toString()} />
-                      {/* TODO: 削除機能の実装 */}
+                      <div className={styles.o_orders__line_count_and_delete}>
+                        <Badge label={line_food.count.toString()} />
+                        <button
+                          className={styles.o_orders__delete_button}
+                          onClick={() => DeleteOrderFoods(line_food.id.toString())}
+                        >
+                          削除
+                        </button>
+                      </div>
                     </div>
                   );
                 })}
