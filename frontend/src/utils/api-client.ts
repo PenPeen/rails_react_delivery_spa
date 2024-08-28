@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 class ApiClient {
   get(path: string) {
@@ -11,6 +11,10 @@ class ApiClient {
 
   put<T>(path: string, data: T) {
     return axios.put(path, data).then((res) => res.data);
+  }
+
+  delete(path: string, data?: AxiosRequestConfig) {
+    return axios.delete(path, data).then((res) => res.data);
   }
 }
 

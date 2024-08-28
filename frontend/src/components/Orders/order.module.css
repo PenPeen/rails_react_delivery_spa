@@ -74,10 +74,21 @@
           align-items: center;
 
           & .o_orders__line_food_image {
+            flex-shrink: 0;
             background-size: cover;
             border-radius: 50%;
             width: 60px;
             height: 60px;
+          }
+        }
+
+        & .o_orders__line_count_and_delete {
+          display: flex;
+          flex-shrink: 0;
+          gap: 8px;
+
+          & .o_orders__delete_button {
+            cursor: pointer;
           }
         }
       }
