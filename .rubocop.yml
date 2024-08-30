@@ -10,3 +10,5 @@ inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 AllCops:
   Exclude:
     - 'lib/tasks/auto_annotate_models.rake'
+    - 'db/migrate/20240830111252_devise_token_auth_create_users.rb'
+    - 'config/initializers/devise.rb'
