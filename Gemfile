@@ -1,12 +1,14 @@
 source "https://rubygems.org"
 
-gem "rails", "~> 7.2.1"
+gem "rails", "~> 7.1.0"
 gem "mysql2"
 gem "puma", ">= 5.0"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem "annotate"
 gem "rack-cors"
+gem "devise", "~> 4.8"
+gem "devise_token_auth", "~> 1.2.1"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
