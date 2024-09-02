@@ -28,7 +28,7 @@ export const Orders: React.FC = () => {
   const { requestState, loading, success } = useContext(RequestContext);
   const [orderInfo, setOrderInfo] = useState<OrderInfo>();
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
-  const [, setCount] = useContext(CartContext);
+  const { setCartCount } = useContext(CartContext);
 
   useEffect(() => {
     fetchOrderFoods();
@@ -58,7 +58,7 @@ export const Orders: React.FC = () => {
       })
       .then(() => {
         client.get(lineFoodsCount).then((data) => {
-          setCount(data.count);
+          setCartCount(data.count);
         });
       })
       .finally(() => {

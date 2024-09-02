@@ -31,7 +31,7 @@ export const FoodModal: React.FC<FoodModalProps> = ({
   sales,
   setSales,
 }) => {
-  const [, setCount] = useContext(CartContext);
+  const { setCartCount } = useContext(CartContext);
   const modalCloseAndResetSales = () => {
     handleCloseModal();
   };
@@ -54,7 +54,7 @@ export const FoodModal: React.FC<FoodModalProps> = ({
         count: sales,
       })
       .then((data) => {
-        setCount(data.count);
+        setCartCount(data.count);
       })
       .catch((e) => {
         if (e.response.status === HTTP_STATUS_CODE.NOT_ACCEPTABLE) {
