@@ -30,7 +30,7 @@ export interface HeaderProps {
 }
 
 export const Header = ({ title, logoUrl, navigations, isDark = false, isFixed = false }: HeaderProps) => {
-  const [count, setCount] = useContext(CartContext);
+  const { cartCount, setCartCount } = useContext(CartContext);
   const { requestState, loading, success } = useContext(RequestContext);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export const Header = ({ title, logoUrl, navigations, isDark = false, isFixed = 
     const client = new ApiClient();
     client.get(lineFoodsCount).then((data) => {
       success();
-      setCount(data.count);
+      setCartCount(data.count);
     });
   }, []);
 
@@ -80,8 +80,8 @@ export const Header = ({ title, logoUrl, navigations, isDark = false, isFixed = 
           <div className={styles.o_header__navigation_icon_wrapper}>
             <Link to="/orders">
               <img src={CartIcon} alt="Cart" className={styles.o_header__navigation_icon} />
-              {requestState.status === REQUEST_STATE.OK && count !== 0 && (
-                <Badge type="success" label={count.toString()} />
+              {requestState.status === REQUEST_STATE.OK && cartCount !== 0 && (
+                <Badge type="success" label={cartCount.toString()} />
               )}
             </Link>
           </div>

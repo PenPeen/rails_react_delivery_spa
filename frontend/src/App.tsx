@@ -8,7 +8,6 @@ import NotFound from '@/components/NotFound/NotFound';
 import { User } from './type';
 import { getCurrentUser } from './utils/auth';
 import { useRequestStatus } from './hooks/use_request_status';
-import { REQUEST_STATE } from './config/constants';
 import { RequestStatusState } from './stores/request_status_reducer';
 
 type RequestContext = {
@@ -16,7 +15,7 @@ type RequestContext = {
   loading: () => void;
   success: () => void;
 };
-type CartContextType = [number, (count: number) => void];
+type CartContextType = { cartCount: number; setCartCount: (count: number) => void };
 type AuthContextType = {
   isSignedIn: boolean;
   setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -61,22 +60,18 @@ function App() {
   }, [setCurrentUser]);
 
   const Private = ({ children }: { children: React.ReactElement }) => {
-    if (requestState.status === REQUEST_STATE.OK) {
-      // draft
-      if (isSignedIn) {
-        return <Navigate to="/signin" replace />;
-      }
-
-      return children;
+    if (!isSignedIn) {
+      return <Navigate to="/signin" replace />;
     }
+
+    return children;
   };
 
   return (
     <>
       <RequestContext.Provider value={{ requestState, loading, success }}>
         <AuthContext.Provider value={{ isSignedIn, setIsSignedIn, currentUser, setCurrentUser }}>
-          {/* TODO: オブジェクトに変更する */}
-          <CartContext.Provider value={[state.count, handleCount]}>
+          <CartContext.Provider value={{ cartCount: state.count, setCartCount: handleCount }}>
             <BrowserRouter>
               <div className="head__contents">
                 <Header title="PenEats" logoUrl="/logo.jpg" isFixed />

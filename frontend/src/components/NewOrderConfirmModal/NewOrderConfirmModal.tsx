@@ -25,7 +25,7 @@ export const NewOrderConfirmModal: React.FC<NewOrderConfirmModalProps> = ({
   existingResutaurautName,
   newResutaurautName,
 }) => {
-  const [, setCount] = useContext(CartContext);
+  const { setCartCount } = useContext(CartContext);
 
   const confirmedOrder = () => {
     const apiClient = new ApiClient();
@@ -35,7 +35,7 @@ export const NewOrderConfirmModal: React.FC<NewOrderConfirmModalProps> = ({
         count: sales,
       })
       .then((data) => {
-        setCount(data.count);
+        setCartCount(data.count);
       })
       .catch((e) => {
         throw e;
