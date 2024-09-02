@@ -1,5 +1,4 @@
 import { FC, useContext, useEffect, useState } from 'react';
-import { useRequestStatus } from '@/hooks/use_request_status';
 import ApiClient from '@/utils/api-client';
 import {
   DEFAULT_RAILS_LOCALHOST,
@@ -16,7 +15,7 @@ import { Link } from 'react-router-dom';
 import Accordion from '../Accordion/Accordion';
 import { Button } from '../Button/Button';
 import { Badge } from '../Badge/Badge';
-import { CartContext } from '@/App';
+import { CartContext, RequestContext } from '@/App';
 
 type OrderInfo = {
   line_foods: OrderFood[];
@@ -26,7 +25,7 @@ type OrderInfo = {
 };
 
 export const Orders: React.FC = () => {
-  const { requestState, fetching, success } = useRequestStatus();
+  const { requestState, loading, success } = useContext(RequestContext);
   const [orderInfo, setOrderInfo] = useState<OrderInfo>();
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const [, setCount] = useContext(CartContext);
@@ -36,7 +35,7 @@ export const Orders: React.FC = () => {
   }, []);
 
   const fetchOrderFoods = () => {
-    fetching();
+    loading();
 
     const client = new ApiClient();
     client.get(lineFoods).then((data) => {
@@ -46,7 +45,7 @@ export const Orders: React.FC = () => {
   };
 
   const DeleteOrderFoods = (lineFoodId: string) => {
-    fetching();
+    loading();
 
     const client = new ApiClient();
     client

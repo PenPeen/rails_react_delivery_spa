@@ -9,7 +9,7 @@ export const useRequestStatus = () => {
 
   return {
     requestState,
-    fetching: () => dispatch(fetching()),
+    loading: () => dispatch(fetching()),
     success: () => dispatch(success()),
   };
 };

@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 type ValueOf<T> = T[keyof T];
 
-interface RequestStatusState {
+export interface RequestStatusState {
   status: ValueOf<typeof REQUEST_STATE>;
 }
 
