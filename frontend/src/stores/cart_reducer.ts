@@ -12,7 +12,7 @@ const CartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    setCount: (state, action: PayloadAction<number>) => {
+    setOrderFoodCount: (state, action: PayloadAction<number>) => {
       state.count = action.payload;
     },
   },

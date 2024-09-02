@@ -9,11 +9,11 @@ import NotFound from '@/components/NotFound/NotFound';
 type CartContextType = [number, (count: number) => void];
 export const CartContext = createContext<CartContextType>({} as never);
 const { actions, reducer } = CartSlice;
-const { setCount } = actions;
+const { setOrderFoodCount } = actions;
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const handleCount = (count: number) => dispatch(setCount(count));
+  const handleCount = (count: number) => dispatch(setOrderFoodCount(count));
 
   return (
     <>
