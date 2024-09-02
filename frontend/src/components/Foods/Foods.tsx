@@ -1,14 +1,14 @@
 import { DEFAULT_RAILS_LOCALHOST, defaultRestaurantImage, foodsIndex, REQUEST_STATE } from '@/config/constants';
-import { useRequestStatus } from '@/hooks/use_request_status';
 import { Food } from '@/type/food';
 import ApiClient from '@/utils/api-client';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './foods.module.css';
 import { Skeleton } from '@mui/material';
 import { FoodModal } from '../FoodModal/FoodModal';
 import { useModal } from '../Modal/useModal';
 import { NewOrderConfirmModal } from '../NewOrderConfirmModal/NewOrderConfirmModal';
+import { RequestContext } from '@/App';
 
 export type RestaurantsNames = {
   exist: string;
@@ -18,7 +18,7 @@ export type RestaurantsNames = {
 export const Foods: React.FC = () => {
   const { restaurantsId } = useParams();
   const [foods, setFoods] = useState<Food[]>();
-  const { requestState, fetching, success } = useRequestStatus();
+  const { requestState, loading, success } = useContext(RequestContext);
   const [showFoodModal, handleFoodOpenModal, handleFoodCloseModal] = useModal();
   const [showNewOrderModal, handleOpenNewOrderModal, handleClosenNewOrderModal] = useModal();
   const [selectedFood, setSelectedFood] = useState<Food>();
@@ -29,7 +29,7 @@ export const Foods: React.FC = () => {
   useEffect(() => {
     if (!restaurantsId) return;
 
-    fetching();
+    loading();
     const client = new ApiClient();
     client.get(foodsIndex(restaurantsId)).then((data) => {
       success();

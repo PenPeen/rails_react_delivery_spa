@@ -4,8 +4,7 @@ import CartIcon from '@/assets/shopping-cart.svg';
 import { useContext, useEffect } from 'react';
 import ApiClient from '@/utils/api-client';
 import { lineFoodsCount, REQUEST_STATE } from '@/config/constants';
-import { useRequestStatus } from '@/hooks/use_request_status';
-import { CartContext } from '@/App';
+import { CartContext, RequestContext } from '@/App';
 import { Badge } from '../Badge/Badge';
 
 type User = {
@@ -32,10 +31,10 @@ export interface HeaderProps {
 
 export const Header = ({ title, logoUrl, navigations, isDark = false, isFixed = false }: HeaderProps) => {
   const [count, setCount] = useContext(CartContext);
-  const { requestState, fetching, success } = useRequestStatus();
+  const { requestState, loading, success } = useContext(RequestContext);
 
   useEffect(() => {
-    fetching();
+    loading();
     const client = new ApiClient();
     client.get(lineFoodsCount).then((data) => {
       success();

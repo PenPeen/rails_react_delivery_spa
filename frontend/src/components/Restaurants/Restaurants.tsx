@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import MainCoverImage from '@/assets/main-cover-image.png';
 import ApiClient from '@/utils/api-client';
 import { restaurantsIndex, REQUEST_STATE, DEFAULT_RAILS_LOCALHOST, defaultRestaurantImage } from '@/config/constants';
 import styles from './restaurants.module.css';
-import { useRequestStatus } from '@/hooks/use_request_status';
 import { Link } from 'react-router-dom';
 import { Skeleton } from '@mui/material';
 import { Restaurant } from '@/type/restaurant';
+import { RequestContext } from '@/App';
 
 export const Restaurants = () => {
-  const { requestState, fetching, success } = useRequestStatus();
+  const { requestState, loading, success } = useContext(RequestContext);
   const [restaurants, setRestaurants] = useState<Restaurant[]>();
 
   useEffect(() => {
-    fetching();
+    loading();
 
     const client = new ApiClient();
     client.get(restaurantsIndex).then((data) => {
