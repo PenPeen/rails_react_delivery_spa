@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 class ApiClient {
-  get(path: string) {
-    return axios.get(path).then((res) => res.data);
+  get(path: string, data?: AxiosRequestConfig) {
+    return axios.get(path, data).then((res) => res.data);
   }
 
   post<T>(path: string, data: T) {
