@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useRef } from 'react';
 import AccordionPresentational from './AccordionPresentational';
 import styles from './accordion.module.css';
 import { animTiming, closingAnimKeyframes, openingAnimKeyframes } from '@/utils/animations';
