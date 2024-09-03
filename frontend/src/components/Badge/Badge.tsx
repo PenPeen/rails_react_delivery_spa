@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './badge.module.css';
+import { Link } from 'react-router-dom';
 
 type BadgeType = 'primary' | 'info' | 'success' | 'warning' | 'danger';
 
@@ -22,7 +23,7 @@ export const Badge: React.FC<BadgeProps> = ({
 
   return (
     <span className={[styles.a_badge, styles[`a_badge__${size}`], mode].join(' ')} onClick={handleClick}>
-      {link ? <a href={link}>{label}</a> : label}
+      {link ? <Link to={link}>{label}</Link> : label}
     </span>
   );
 };
