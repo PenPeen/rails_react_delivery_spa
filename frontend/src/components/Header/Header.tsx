@@ -65,7 +65,7 @@ export const Header = ({ title, logoUrl, navigations, isDark = false, isFixed = 
                 {navigations.map((navigation) => {
                   return (
                     <li>
-                      <a href={navigation.url}>{navigation.text}</a>
+                      <Link to={navigation.url}>{navigation.text}</Link>
                     </li>
                   );
                 })}
@@ -88,8 +88,14 @@ export const Header = ({ title, logoUrl, navigations, isDark = false, isFixed = 
               </div>
             </Link>
           </div>
-          <Button label="ログイン" size="small" type="neutral" />
-          <Button label="登録する" size="small" type="neutral" />
+          <div className={styles.o_header__login_contents}>
+            <Button size="small" type="neutral">
+              <Link to="/signin">ログイン</Link>
+            </Button>
+            <Button size="small" type="neutral">
+              <Link to="/signup">登録する</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </header>
