@@ -5,7 +5,8 @@ import { useContext, useEffect } from 'react';
 import ApiClient from '@/utils/api-client';
 import { lineFoodsCount, REQUEST_STATE } from '@/config/constants';
 import { CartContext, RequestContext } from '@/App';
-import { Badge } from '../Badge/Badge';
+import { Badge } from '@/components/Badge/Badge';
+import { Button } from '@/components/Button/Button';
 
 type User = {
   name: string;
@@ -79,12 +80,16 @@ export const Header = ({ title, logoUrl, navigations, isDark = false, isFixed = 
         <div className={styles.o_header__right_contents}>
           <div className={styles.o_header__navigation_icon_wrapper}>
             <Link to="/orders">
-              <img src={CartIcon} alt="Cart" className={styles.o_header__navigation_icon} />
-              {requestState.status === REQUEST_STATE.OK && cartCount !== 0 && (
-                <Badge type="success" label={cartCount.toString()} />
-              )}
+              <div className={styles.o_header__orders_link}>
+                <img src={CartIcon} alt="Cart" className={styles.o_header__navigation_icon} />
+                {requestState.status === REQUEST_STATE.OK && cartCount !== 0 && (
+                  <Badge type="success" label={cartCount.toString()} />
+                )}
+              </div>
             </Link>
           </div>
+          <Button label="ログイン" size="small" type="neutral" />
+          <Button label="登録する" size="small" type="neutral" />
         </div>
       </div>
     </header>
