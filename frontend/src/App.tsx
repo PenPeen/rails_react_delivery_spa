@@ -9,6 +9,8 @@ import { User } from './type';
 import { getCurrentUser } from './utils/auth';
 import { useRequestStatus } from './hooks/use_request_status';
 import { RequestStatusState } from './stores/request_status_reducer';
+import SignUp from '@/components/SignUp/SignUp';
+import SignIn from '@/components/SignIn/SignIn';
 
 type RequestContext = {
   requestState: RequestStatusState;
@@ -78,6 +80,8 @@ function App() {
               </div>
               <div className="main__contents">
                 <Routes>
+                  <Route path="/signup" element={<SignUp />} />
+                  <Route path="/signin" element={<SignIn />} />
                   <Route path="/" element={<Restaurants />} />
                   <Route path="/restaurants" element={<Restaurants />} />
                   <Route path="/restaurants/:restaurantsId/foods" element={<Foods />} />

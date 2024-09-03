@@ -42,8 +42,13 @@
 
   & .o_header__right_contents {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     align-items: center;
+
+    & .o_header__navigation_icon_wrapper {
+      position: relative;
+      margin-right: 16px;
+    }
   }
 
   .o_header_icon_wrapper {
@@ -72,8 +77,8 @@
   & .o_header__navigation_icon_wrapper {
     & span {
       position: absolute;
-      top: 5px;
-      right: 35px;
+      top: -10px;
+      right: -20px;
 
       @media (max-width: 767px) {
         right: 15px;
