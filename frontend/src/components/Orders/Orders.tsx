@@ -154,7 +154,9 @@ export const Orders: React.FC = () => {
               <h3 className={styles.o_orders__total_price_label}>
                 合計 <span>¥ {orderInfo.total_price.toLocaleString()}</span>
               </h3>
-              <Button label={'本ページの内容を確認の上、注文を確定する'} type={'success'} isSolid isFull />
+              <Button type={'success'} isSolid isFull>
+                '本ページの内容を確認の上、注文を確定する'
+              </Button>
             </div>
           </div>
         )}
