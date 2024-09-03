@@ -23,7 +23,9 @@ const ModalPresentational: React.FC<ModalProps & PropsWithChildren> = ({
     <div className={styles.o_modal}>
       {isOpenButton && (
         <span className={styles.o_modal__ok_button}>
-          <Button type="primary" handleClick={handleOpenModal} label={openLabel} />
+          <Button type="primary" handleClick={handleOpenModal}>
+            {openLabel}
+          </Button>
         </span>
       )}
       <ReactModal
@@ -50,12 +52,14 @@ const ModalPresentational: React.FC<ModalProps & PropsWithChildren> = ({
           <div className={styles.o_modal__button_wrapper}>
             {isCancelButton && (
               <span className={styles.o_modal__cancel_button}>
-                <Button handleClick={handleCloseModal} label={cancelLabel} />
+                <Button handleClick={handleCloseModal}>{cancelLabel}</Button>
               </span>
             )}
             {isOkButton && (
               <span className={styles.o_modal__ok_button}>
-                <Button type="primary" handleClick={handleOK} label={okLabel} />
+                <Button type="primary" handleClick={handleOK}>
+                  {okLabel}
+                </Button>
               </span>
             )}
           </div>

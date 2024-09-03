@@ -1,12 +1,14 @@
+// Linkに対応できるように
+
 import React from 'react';
 import styles from './button.module.css';
 
 type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'neutral';
 
 interface ButtonProps {
+  children: React.ReactNode;
   type?: ButtonType;
   size?: 'small' | 'medium' | 'large';
-  label: string;
   isRadius?: boolean;
   isSolid?: boolean;
   isFull?: boolean;
@@ -17,12 +19,12 @@ interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({
   type = 'primary',
   size = 'medium',
-  label,
   isRadius = false,
   isSolid = false,
   isFull = false,
   isDisabled = false,
   handleClick,
+  children,
 }: ButtonProps) => {
   const mode = styles[`a_button__${type}`];
   const solid = isSolid && styles[`a_button__${type}_solid`];
@@ -36,7 +38,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={[styles.a_button, styles[`a_button__${size}`], mode, solid, radius, full].join(' ')}
       onClick={handleClick}
     >
-      {label}
+      {children}
     </button>
   );
 };

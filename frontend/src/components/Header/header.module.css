@@ -49,6 +49,15 @@
       position: relative;
       margin-right: 16px;
     }
+    & .o_header__login_contents {
+      display: flex;
+      gap: 12px;
+
+      & a {
+        color: unset;
+        text-decoration: none;
+      }
+    }
   }
 
   .o_header_icon_wrapper {
