@@ -1,6 +1,9 @@
 .sign_in {
-  position: relative;
-  top: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 90vw;
 
   & .sign_in_form {
     max-width: 500px;
