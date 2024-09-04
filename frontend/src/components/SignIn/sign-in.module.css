@@ -1,0 +1,85 @@
+.sign_in {
+  position: relative;
+  top: 16px;
+
+  & .sign_in_form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+
+    & .sign_in_card {
+      margin-bottom: 20px;
+
+      & .sign_in_card_header {
+        padding: 10px;
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      & .sign_in_card_content {
+        padding: 20px;
+
+        & .sign_in_form_field {
+          margin-bottom: 20px;
+
+          & label,
+          & input {
+            display: block;
+          }
+
+          & input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+          }
+        }
+
+        & .sign_in_submit_button {
+          background-color: #007bff;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          width: 100%;
+          font-size: 18px;
+
+          &:disabled {
+            background-color: #ccc;
+          }
+        }
+
+        & .sign_in_center_text {
+          text-align: center;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+
+  & .sign_in_alert_message {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 20px;
+    border-radius: 4px;
+  }
+
+  & a {
+    color: #007bff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
