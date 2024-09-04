@@ -4,9 +4,11 @@ import CartIcon from '@/assets/shopping-cart.svg';
 import { useContext, useEffect } from 'react';
 import ApiClient from '@/utils/api-client';
 import { lineFoodsCount, REQUEST_STATE } from '@/config/constants';
-import { CartContext, RequestContext } from '@/App';
+import { AuthContext, CartContext, RequestContext } from '@/App';
 import { Badge } from '@/components/Badge/Badge';
 import { Button } from '@/components/Button/Button';
+import { signOut } from '@/utils/auth';
+import Cookies from 'js-cookie';
 
 type User = {
   name: string;
@@ -33,6 +35,7 @@ export interface HeaderProps {
 export const Header = ({ title, logoUrl, navigations, isDark = false, isFixed = false }: HeaderProps) => {
   const { cartCount, setCartCount } = useContext(CartContext);
   const { requestState, loading, success } = useContext(RequestContext);
+  const { isSignedIn, setIsSignedIn } = useContext(AuthContext);
 
   useEffect(() => {
     loading();
@@ -50,6 +53,22 @@ export const Header = ({ title, logoUrl, navigations, isDark = false, isFixed = 
   if (isDark) {
     mode.push(styles.o_header__dark);
   }
+
+  const handleSignOut = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    try {
+      e.preventDefault();
+      const res = await signOut();
+
+      if (res.data.success === true) {
+        const cookiesToDelete = ['_access_token', '_client', '_uid'];
+        cookiesToDelete.forEach((cookie) => Cookies.remove(cookie));
+
+        setIsSignedIn(false);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <header className={mode.join(' ')}>
@@ -89,12 +108,21 @@ export const Header = ({ title, logoUrl, navigations, isDark = false, isFixed = 
             </Link>
           </div>
           <div className={styles.o_header__login_contents}>
-            <Button size="small" type="neutral">
-              <Link to="/signin">ログイン</Link>
-            </Button>
-            <Button size="small" type="neutral">
-              <Link to="/signup">登録する</Link>
-            </Button>
+            {requestState.status === REQUEST_STATE.OK &&
+              (isSignedIn ? (
+                <Button size="small" type="neutral" handleClick={() => handleSignOut}>
+                  サインアウト
+                </Button>
+              ) : (
+                <>
+                  <Button size="small" type="neutral">
+                    <Link to="/signin">ログイン</Link>
+                  </Button>
+                  <Button size="small" type="danger" isSolid>
+                    <Link to="/signup">登録する</Link>
+                  </Button>
+                </>
+              ))}
           </div>
         </div>
       </div>
