@@ -53,8 +53,8 @@ export const FoodModal: React.FC<FoodModalProps> = ({
         food_id: selectedFood.id,
         count: sales,
       })
-      .then((data) => {
-        setCartCount(data.count);
+      .then((res) => {
+        setCartCount(res.data.count);
       })
       .catch((e) => {
         if (e.response.status === HTTP_STATUS_CODE.NOT_ACCEPTABLE) {

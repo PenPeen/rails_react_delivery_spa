@@ -40,9 +40,9 @@ export const Header = ({ title, logoUrl, navigations, isDark = false, isFixed = 
   useEffect(() => {
     loading();
     const client = new ApiClient();
-    client.get(lineFoodsCount).then((data) => {
+    client.get(lineFoodsCount).then((res) => {
       success();
-      setCartCount(data.count);
+      setCartCount(res.data.count);
     });
   }, []);
 

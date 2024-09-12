@@ -31,9 +31,9 @@ export const Foods: React.FC = () => {
 
     loading();
     const client = new ApiClient();
-    client.get(foodsIndex(restaurantsId)).then((data) => {
+    client.get(foodsIndex(restaurantsId)).then((res) => {
       success();
-      setFoods(data.foods);
+      setFoods(res.data.foods);
     });
   }, []);
 

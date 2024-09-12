@@ -17,8 +17,8 @@ export const Restaurants = () => {
     loading();
 
     const client = new ApiClient();
-    client.get(restaurantsIndex).then((data) => {
-      setRestaurants(data.restaurants);
+    client.get(restaurantsIndex).then((res) => {
+      setRestaurants(res.data.restaurants);
       success();
     });
   }, []);

@@ -34,8 +34,8 @@ export const NewOrderConfirmModal: React.FC<NewOrderConfirmModalProps> = ({
         food_id: selectedFood!.id,
         count: sales,
       })
-      .then((data) => {
-        setCartCount(data.count);
+      .then((res) => {
+        setCartCount(res.data.count);
       })
       .catch((e) => {
         throw e;
