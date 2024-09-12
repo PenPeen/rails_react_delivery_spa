@@ -1,35 +1,20 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-
-function applyCaseMiddleware(axiosInstance: AxiosInstance): AxiosInstance {
-  axiosInstance.interceptors.request.use((config) => {
-    return config;
-  });
-
-  return axiosInstance;
-}
+import axios, { AxiosRequestConfig } from 'axios';
 
 class ApiClient {
-  private axiosInstance: AxiosInstance;
-
-  constructor(baseURL: string = 'http://localhost:3000/api/v1') {
-    const instance = axios.create({ baseURL });
-    this.axiosInstance = applyCaseMiddleware(instance);
-  }
-
   get(path: string, data?: AxiosRequestConfig) {
-    return this.axiosInstance.get(path, data).then((res) => res.data);
+    return axios.get(path, data).then((res) => res);
   }
 
   post<T>(path: string, data: T) {
-    return this.axiosInstance.post(path, data).then((res) => res.data);
+    return axios.post(path, data).then((res) => res);
   }
 
   put<T>(path: string, data: T) {
-    return this.axiosInstance.put(path, data).then((res) => res.data);
+    return axios.put(path, data).then((res) => res);
   }
 
   delete(path: string, data?: AxiosRequestConfig) {
-    return this.axiosInstance.delete(path, data).then((res) => res.data);
+    return axios.delete(path, data).then((res) => res);
   }
 }
 
