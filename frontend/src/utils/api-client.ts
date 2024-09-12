@@ -11,7 +11,7 @@ function applyCaseMiddleware(axiosInstance: AxiosInstance): AxiosInstance {
 class ApiClient {
   private axiosInstance: AxiosInstance;
 
-  constructor(baseURL: string = 'http://localhost:3001') {
+  constructor(baseURL: string = 'http://localhost:3000') {
     const instance = axios.create({ baseURL });
     this.axiosInstance = applyCaseMiddleware(instance);
   }
