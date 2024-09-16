@@ -38,8 +38,8 @@ export const Orders: React.FC = () => {
     loading();
 
     const client = new ApiClient();
-    client.get(lineFoods).then((data) => {
-      setOrderInfo(data);
+    client.get(lineFoods).then((res) => {
+      setOrderInfo(res.data);
       success();
     });
   };
@@ -50,15 +50,15 @@ export const Orders: React.FC = () => {
     const client = new ApiClient();
     client
       .delete(lineFoodDestroy(lineFoodId))
-      .then((data) => {
-        setOrderInfo(data);
+      .then((res) => {
+        setOrderInfo(res.data);
       })
       .then(() => {
         fetchOrderFoods();
       })
       .then(() => {
-        client.get(lineFoodsCount).then((data) => {
-          setCartCount(data.count);
+        client.get(lineFoodsCount).then((res) => {
+          setCartCount(res.data.count);
         });
       })
       .finally(() => {

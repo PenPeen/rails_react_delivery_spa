@@ -8,5 +8,6 @@ export const lineFoodsReplace = `${DEFAULT_API_LOCALHOST}/line_foods/replace`;
 export const lineFoodsCount = `${DEFAULT_API_LOCALHOST}/line_foods/cart_count`;
 export const lineFoodDestroy = (lineFoodId: string) => `${DEFAULT_API_LOCALHOST}/line_foods/${lineFoodId}`;
 export const orders = `${DEFAULT_API_LOCALHOST}/orders`;
+export const login = `${DEFAULT_API_LOCALHOST}/auth/sign_in`;
 
 export const defaultRestaurantImage = `${DEFAULT_RAILS_LOCALHOST}/restaurant-default-image.jpg`;

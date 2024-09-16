@@ -1,6 +1,7 @@
 import { SignInParams, SignUpParams } from '@/type';
 import Cookies from 'js-cookie';
 import ApiClient from './api-client';
+import { login } from '@/config/constants';
 
 export const signUp = (params: SignUpParams) => {
   const client = new ApiClient();
@@ -9,7 +10,7 @@ export const signUp = (params: SignUpParams) => {
 
 export const signIn = (params: SignInParams) => {
   const client = new ApiClient();
-  return client.post('auth/sign_in', params);
+  return client.post(login, params);
 };
 
 export const signOut = () => {
